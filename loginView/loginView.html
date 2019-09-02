@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1&display=swap" rel="stylesheet">
+    <link type="text/css" href="./css/loginView.css" rel="stylesheet" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="loginView_background">
+        <div class="loginView_tree1"></div>
+        <div class="loginView_tree2"></div>
+        <div class="loginView_tree3"></div>
+        <div class="loginView_tree4"></div>
+    </div>
+    <div class="loginView">
+        <div class="loginView_center">
+            <div class="loginView_logPasP">
+                <div class="loginView_loginP" onkeydown="loginView_onKeyDown(1)">
+                    <div class="loginView_loginP_title">
+                        <h1>로그인</h1>
+                    </div>
+                    <div class="loginView_loginP_comment">
+                        <p>이메일과 비밀번호를 적어주세요</p>
+                    </div>
+                    <div class="loginView_loginP_logPas">
+                        <input id="login_id" type="text" placeholder="아이디">
+                        <input id="login_password" type="password" placeholder="비밀번호">
+                    </div>
+                    <div class="loginView_loginP_comment">
+                        <button id="findPassButton" onclick="loginView_center_findPassChanging()">비밀번호를 잊어버리셨나요?</button>
+                    </div>
+                    <div class="loginView_loginP_button">
+                        <button id="loginButton" onclick="loginButton_pressed()">로그인</button>
+                    </div>
+                </div>
+                <div class="loginView_signupP">
+                    <div onkeydown="loginView_onKeyDown(2)">
+                        <div class="loginView_signupP_title">
+                            <h1>회원가입</h1>
+                        </div>
+                        <div class="loginView_signupP_comment">
+                            <p>회원가입을 위해 이메일을 적어주세요</p>
+                        </div>
+                        <div class="loginView_signupP_logPasPas">
+                            <input id="signup_id" type="text" placeholder="이메일">
+                            <input id="signup_password" type="password" placeholder="비밀번호">
+                            <input id="signup_checkPassword" type="password" placeholder="비밀번호 확인">
+                            <input id="signup_nickName" type="text" placeholder="닉네임">
+                            <select id="signup_grade">
+                                <option value="undefined" selected disabled hidden>학년선택</option>
+                                <option value="1">1학년</option>
+                                <option value="2">2학년</option>
+                                <option value="3">3학년</option>
+                            </select>
+                        </div>
+                        <div class="loginView_signupP_gender">
+                            <!-- <div class="loginView_signupP_genderBox">
+                                <div class="">
+
+                                </div>
+                            </div> -->
+                            <select id="signup_gender">
+                                <option value="undefined" selected disabled hidden>성별선택</option>
+                                <option value="남자">남자</option>
+                                <option value="여자">여자</option>
+                                <option value="밝히지 않음">밝히지 않음</option>
+                            </select>
+                            
+                        </div>
+                        <div class="loginView_signupP_button">
+                            <button id="signupButton" onclick="signupButton_pressed()">회원가입</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="loginView_findPassP" onkeydown="loginView_onKeyDown(3)">
+                    <div class="loginView_findPassP_title">
+                        <h1>비밀번호 찾기</h1>
+                    </div>
+                    <div class="loginView_findPassP_comment">
+                        <p>이메일을 적어주세요</p>
+                    </div>
+                    <div class="loginView_findPassP_emailConfirm">
+                        <input id="findPass_email" type="text" placeholder="이메일">
+                    </div>
+                    <div class="loginView_findPassP_comment">
+                        <p>인증번호가 전송되었습니다.</p>
+                    </div>
+                    <div class="loginView_findPassP_emailConfirm">
+                        <input id="findPass_confirm" type="text" placeholder="인증번호">
+                    </div>
+                    <div class="loginView_findPassP_button">
+                        <button id="findPassButton" onclick="findPassButton_pressed()"><p>이메일로 전송</p><p>인증번호 확인</p></button>
+                    </div>
+                </div>
+            </div>
+            <div class="loginView_changeP">
+                <div>
+                    <div class="loginView_changeP_loginContents">
+                        <div class="loginView_changeP_loginTitle">
+                            <h1>안녕하세요</h1>
+                        </div>
+                        <div class="loginView_changeP_loginComment">
+                            <p>계정이 아직 없으시다면</p>
+                            <p>회원가입을 해주세요</p>
+                        </div>
+                        <div class="loginView_changeP_loginButton">
+                            <button id="changeLoginPButton" onclick="loginView_center_logSignChanging()">회원가입</button>
+                        </div>
+                    </div>
+                    <div class="loginView_changeP_signupContents">
+                        <div class="loginView_changeP_signupTitle">
+                            <h1>어서오세요</h1>
+                        </div>
+                        <div class="loginView_changeP_signupComment">
+                            <p>로그인을 하시기 위해선</p>
+                            <p>회원정보를 입력해주세요</p>
+                        </div>
+                        <div class="loginView_changeP_signupButton">
+                            <button id="changeSignupPButton" onclick="loginView_center_logSignChanging()">로그인</button>
+                        </div>
+                    </div>
+                    <div class="loginView_changeP_findPassContents">
+                        <div class="loginView_changeP_findPassTitle">
+                            <h1>음..?!</h1>
+                        </div>
+                        <div class="loginView_changeP_findPassComment">
+                            <p>비밀번호가 기억나셨다면</p>
+                            <p>로그인창으로 가세요</p>
+                        </div>
+                        <div class="loginView_changeP_findPassButton">
+                            <button id="changefindPassPButton" onclick="loginView_center_findPassChanging()">로그인</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="loginView_insideBackground">
+                    <div>
+                        <div>
+                            <!-- <div class="loginView_insideTree1"></div>
+                            <div class="loginView_insideTree2"></div>
+                            <div class="loginView_insideTree3"></div>
+                            <div class="loginView_insideTree4"></div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+<script src="./js/loginView.js"></script>
+</html>

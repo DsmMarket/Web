@@ -1,0 +1,931 @@
+ /* http://meyerweb.com/eric/tools/css/reset/ 
+v2.0 | 20110126
+License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height: 10px; background: url('./images/bg.png') #efefef}
+::-webkit-scrollbar-track {background: #efefef; -webkit-border-radius: 10px; border-radius:10px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2)} */
+/* ::-webkit-scrollbar-thumb {height: 50px; width: 50px; background: rgba(0,0,0,.2); -webkit-border-radius: 8px; border-radius: 8px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.1)} */
+::-webkit-scrollbar {display:none;}
+
+body {
+    background-color: #EAE9E9;
+    overflow-x: hidden;
+}
+
+/* 로그인뷰 배경화면 */
+
+.loginView_background {
+    z-index: -1;
+    position: relative;
+    min-width: 1500px;
+    min-height: 900px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.loginView_tree1 {
+    position: absolute;
+    bottom: -9%;
+    left: 1%;
+    width: 25.88%;
+    height: 41.2%;
+    background-image: url('../image/loginView_tree1.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.loginView_tree2 {
+    position: absolute;
+    top: -9%;
+    right: 1%;
+    width: 27.5%;
+    height: 50%;
+    background-image: url('../image/loginView_tree2.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+
+.loginView_tree3 {
+    position: absolute;
+    top: 4%;
+    left: -1%;
+    width: 26.04%;
+    height: 56%;
+    background-image: url('../image/loginView_tree3.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+
+.loginView_tree4 {
+    position: absolute;
+    bottom: -9%;
+    right: 2%;
+    width: 22.39%;
+    height: 41.2%;
+    background-image: url('../image/loginView_tree4.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.loginView {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    min-width: 1500px;
+    min-height: 900px;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* .loginView_insideBackground {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 1500px;
+    min-height: 900px; 
+    max-width: 36.25rem;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.loginView_insideBackground > div {
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+.loginView_insideBackground > div > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.loginView_insideTree1 {
+    position: absolute;
+    top: 67%;
+    left: 1%;
+    width: 25.88%;
+    height: 41.2%;
+    background-image: url('./image/loginView_insideTree1.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.loginView_insideTree2 {
+    position: absolute;
+    top: -7%;
+    left: 74%;
+    width: 27.5%;
+    height: 53%;
+    background-image: url('./image/loginView_insideTree2.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+
+.loginView_insideTree3 {
+    position: absolute;
+    top: 4%;
+    left: -1%;
+    width: 26.04%;
+    height: 49.59%;
+    background-image: url('./image/loginView_insideTree3.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+
+.loginView_insideTree4 {
+    position: absolute;
+    top: 66%;
+    left: 74%;
+    width: 22.39%;
+    height: 41.2%;
+    background-image: url('./image/loginView_insideTree4.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+} */
+
+/* 로그인뷰 중앙정렬 */
+
+.loginView_center {
+    border-radius: 2vw;
+    display: flex;
+    position: relative;
+    width: 70%;
+    height: 65%;
+    max-height: 650px;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 1px 1px 4px black;
+}
+
+/* 로그인뷰 내용 */
+
+.loginView_logPasP {
+    z-index: 2;
+    position: absolute;
+    /* transform: translateX(0%); */
+    left: 0;
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    /* transition: transform 1s cubic-bezier(0.005, 0.975, 1.000, 0.035); */
+    transition: transform 1s ease-in-out, left 1s ease-in-out;
+}
+
+/* 로그인뷰 왼쪽으로 이동 */
+
+.logSignChanging .loginView_logPasP {
+    /* transform: translateX(66.5%); */
+    left: 40%;
+}
+
+/* 로그인뷰 로그인창 */
+
+.loginView_loginP {
+    z-index: 4;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 60px);
+    background-color: white;
+    opacity: 1;
+    transition: opacity 0.55s cubic-bezier(0.600, 0.000, 1.000, 0.000);
+}
+
+/* 로그인창에서 회원가입창으로 */
+
+.logSignChanging .loginView_loginP {
+    z-index: 3;
+    opacity: 0;
+}
+
+.findPassChanging .loginView_loginP {
+    z-index: 3;
+    opacity: 0;
+}
+
+/* 로그인창 내용 */
+
+.loginView_loginP_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 23%;
+}
+
+.loginView_loginP_title > h1 {
+    color: #348f50;
+    font-size: 3.5rem;
+}
+
+.loginView_loginP_comment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 11%;
+}
+
+.loginView_loginP_comment > p {
+    font-size: 1.5rem;
+    font-family: 'Gothic A1', sans-serif;
+}
+
+.loginView_loginP_comment > button {
+    border: none;
+    background: none;
+    outline: none;
+    color: #2195AE;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.loginView_loginP_comment > button:hover {
+    color: #176577;
+}
+
+.loginView_loginP_logPas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 27%;
+}
+
+.loginView_loginP_logPas > input {
+    margin: 10px 0;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0 0 0 2%;
+    width: calc(53% - 2%); 
+    height: 40%;
+    font-size: 1.5rem;
+    outline: none;
+    background-image: linear-gradient(#F2F2F2,#F2F2F2), repeating-linear-gradient(110deg , #348f50, #56b4d3);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: all 0.3s;
+}
+
+.loginView_loginP_logPas > input:focus {
+    border: 2px solid transparent;
+    background-image: linear-gradient(#FFFFFF,#FFFFFF), repeating-linear-gradient(110deg , #348f50, #56b4d3);
+}
+
+.loginView_loginP_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+}
+
+.loginView_loginP_button > button {
+    border-radius: 200px;
+    border: none;
+    width: 28%;
+    height: 90%;
+    background: linear-gradient(70deg, #83B582, #83B582, #56b4d3, #348f50);
+    background-size: 300% 300%;
+    background-position: 0% 50%;
+    box-shadow: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.loginView_loginP_button > button:hover {
+    background-position: 100% 100%;
+    width: 30%;
+    height: 94%;
+    font-size: 1.3rem;
+}
+
+.loginView_loginP_button > button:active {
+    width: 28%;
+    height: 90%;
+    font-size: 1.2rem;
+}
+
+/* 로그인뷰 회원가입창 */
+
+.loginView_signupP {
+    z-index: 3;
+    padding: 75px 0 0 0;
+    position: absolute;
+    width: calc(100% );
+    height: calc(100% - 75px);
+    background-color: white;
+    overflow-y: scroll;
+    opacity: 0;
+    transition: opacity 0.55s cubic-bezier(0.600, 0.000, 1.000, 0.000);
+}
+
+.loginView_signupP > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 1%);
+    height: calc(100% - 75px);
+    transition: height 1.5s;
+}
+
+.logSignChanging .loginView_signupP > div {
+    height: calc(150% - 75px);
+}
+
+/* 로그인창에서 회원가입 창으로 */
+
+.logSignChanging .loginView_signupP {
+    z-index: 4;
+    opacity: 1;
+}
+
+/* 회원가입창 내용 */
+
+.loginView_signupP_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 16.5%;
+}
+
+.loginView_signupP_title > h1 {
+    color: #348f50;
+    font-size: 3.5rem;
+}
+
+.loginView_signupP_comment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 8%;
+}
+
+.loginView_signupP_comment > p {
+    font-size: 1.5rem;
+    font-family: 'Gothic A1', sans-serif;
+}
+
+.loginView_signupP_logPasPas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
+}
+
+.loginView_signupP_logPasPas > input {
+    margin: 10px 0;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0 0 0 2%;
+    width: calc(53% - 2%);
+    height: 40%;
+    font-size: 1.5rem;
+    outline: none;
+    background-image: linear-gradient(#F2F2F2,#F2F2F2), repeating-linear-gradient(110deg , #348f50, #56b4d3);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: all 0.3s;
+}
+
+.loginView_signupP_logPasPas > input:focus {
+    border: 2px solid transparent;
+    background-image: linear-gradient(#FFFFFF,#FFFFFF), repeating-linear-gradient(110deg , #348f50, #56b4d3);
+}
+
+.loginView_signupP_logPasPas > select {
+    margin: 10px 0;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0 0 0 2%;
+    width: calc(55.7% - 2%);
+    height: 40%;
+    font-size: 1.5rem;
+    outline: none;
+    background-image: linear-gradient(#FFFFFF,#FFFFFF), repeating-linear-gradient(110deg , #348f50, #56b4d3);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: all 0.3s;
+}
+
+.loginView_signupP_button {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 7.5%;
+}
+
+.loginView_signupP_button > button {
+    border-radius: 200px;
+    border: none;
+    width: 28%;
+    height: 90%;
+    background: linear-gradient(70deg, #83B582, #83B582, #56b4d3, #348f50);
+    background-size: 300% 300%;
+    background-position: 0% 50%;
+    box-shadow: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.loginView_signupP_button > button:hover {
+    background-position: 100% 100%;
+    width: 30%;
+    height: 94%;
+    font-size: 1.3rem;
+}
+
+.loginView_signupP_button > button:active {
+    width: 28%;
+    height: 90%;
+    font-size: 1.2rem;
+}
+
+.loginView_signupP_gender {
+    height: 10%;
+}
+
+/* 로그인뷰 비밀번호 찾기창 */
+
+.loginView_findPassP {
+    z-index: 3;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 60px);
+    background-color: white;
+    opacity: 0;
+    transition: opacity 0.55s cubic-bezier(0.600, 0.000, 1.000, 0.000);
+}
+
+/* 로그인창에서 비밀번호찾기창으로 */
+
+.findPassChanging .loginView_findPassP {
+    z-index: 8;
+    opacity: 1;
+}
+
+/* 비밀번호찾기창 내용 */
+
+/*
+.loginView_findPassP
+.loginView_findPass_title > h1
+.loginView_findPass_comment > p
+.loginView_findPass_email > input
+.loginView_findPass_comment > p
+.loginView_findPass_confirm > input
+*/
+
+.loginView_findPassP_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 23%;
+}
+
+.loginView_findPassP_title > h1 {
+    color: #348f50;
+    font-size: 3.5rem;
+}
+
+.loginView_findPassP_comment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 11%;
+}
+
+.loginView_findPassP_comment:nth-child(4) {
+    height: 0;
+    opacity: 0; 
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+.findPassEmailAfter .loginView_findPassP_comment:nth-child(2) {
+    height: 0;
+    opacity: 0; 
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+.findPassEmailAfter .loginView_findPassP_comment:nth-child(4) {
+    height: 10%;
+    opacity: 1;
+}
+
+.loginView_findPassP_comment > p {
+    font-size: 1.5rem;
+    font-family: 'Gothic A1', sans-serif;
+}
+
+.loginView_findPassP_emailConfirm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+}
+
+.loginView_findPassP_emailConfirm:nth-child(5) {
+    height: 0;
+    opacity: 0; 
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+.findPassEmailAfter .loginView_findPassP_emailConfirm:nth-child(3) {
+    height: 0;
+    opacity: 0; 
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+.findPassEmailAfter .loginView_findPassP_emailConfirm:nth-child(5) {
+    height: 10%;
+    opacity: 1;
+}
+
+.loginView_findPassP_emailConfirm > input {
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0 0 0 2%;
+    width: calc(53% - 2%); 
+    height: 100%;
+    font-size: 1.5rem;
+    outline: none;
+    background-image: linear-gradient(#F2F2F2,#F2F2F2), repeating-linear-gradient(110deg , #348f50, #56b4d3);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: all 0.3s;
+}
+
+.loginView_findPassP_emailConfirm > input:focus {
+    border: 2px solid transparent;
+    background-image: linear-gradient(#FFFFFF,#FFFFFF), repeating-linear-gradient(110deg , #348f50, #56b4d3);
+}
+
+.findPassEmailAfter .findPassEmailAfter_hide {
+    height: auto;
+    opacity: 1; 
+}
+
+.loginView_findPassP_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 25%;
+}
+
+.loginView_findPassP_button > button {
+    border-radius: 200px;
+    border: none;
+    padding: 0;
+    position: relative;
+    width: 28%;
+    height: 35%;
+    background: linear-gradient(70deg, #83B582, #83B582, #56b4d3, #348f50);
+    background-size: 300% 300%;
+    background-position: 0% 50%;
+    box-shadow: none;
+    outline: none;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.loginView_findPassP_button > button:hover {
+    background-position: 100% 100%;
+    width: 30%;
+    height: 37%;
+    font-size: 1.3rem;
+}
+
+.loginView_findPassP_button > button:active {
+    width: 28%;
+    height: 35%;
+    font-size: 1.2rem;
+}
+
+.loginView_findPassP_button > button > p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.loginView_findPassP_button > button > p:nth-child(1) {
+    left: 0%;
+}
+
+.loginView_findPassP_button > button > p:nth-child(2) {
+    right: -100%;
+}
+
+.findPassEmailAfter .loginView_findPassP_button > button > p:nth-child(1) {
+    left: -100%;
+}
+
+.findPassEmailAfter .loginView_findPassP_button > button > p:nth-child(2) {
+    right: 0%;
+}
+
+/* @keyframes logPas_spinBorder {
+    0%,to{background-image: repeating-linear-gradient(110deg , #348f50, #56b4d3)}
+    10%{background-image: repeating-linear-gradient(146deg , #348f50, #56b4d3)}
+    20%{background-image: repeating-linear-gradient(182deg , #348f50, #56b4d3)}
+    30%{background-image: repeating-linear-gradient(218deg , #348f50, #56b4d3)}
+    40%{background-image: repeating-linear-gradient(244deg , #348f50, #56b4d3)}
+    50%{background-image: repeating-linear-gradient(280deg , #348f50, #56b4d3)}
+    60%{background-image: repeating-linear-gradient(326deg , #348f50, #56b4d3)}
+    70%{background-image: repeating-linear-gradient(2deg , #348f50, #56b4d3)}
+    80%{background-image: repeating-linear-gradient(38deg , #348f50, #56b4d3)}
+    90%{background-image: repeating-linear-gradient(74deg , #348f50, #56b4d3)}
+    100%{background-image: repeating-linear-gradient(110deg , #348f50, #56b4d3)}
+} */
+
+/* 사이드바 로그인 창일때*/
+
+.loginView_changeP {
+    z-index: 10;
+    position: absolute;
+    /* transform: translateX(150%); */
+    right: 0%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(110deg, #348f50, #56b4d3);
+    transition: transform 0.8s ease-in-out, right 0.8s ease-in-out;
+}
+
+/* 사이드바 회원가입 창일때 */
+
+.logSignChanging .loginView_changeP {
+    /* transform: translateX(0%); */
+    right: 60%;
+    /* animation: logSignP_changeWidth 1.3s;
+    animation-timing-function:ease-in-out; */
+}
+
+@keyframes logSign_changeWidth {
+    0%,to{width: 40%}
+    50%{width: 60%}
+    100%{width: 40%;}
+}
+
+/* 사이드바 비밀번호 찾기 페이지 */
+
+.findPassChanging .loginView_changeP {
+    animation: findPass_changeWidth 2s;
+    animation-timing-function:ease-in-out;
+}
+
+@keyframes findPass_changeWidth {
+    0%,to{width: 40%}
+    30%{width: 100%}
+    70%{width: 100%}
+    100%{width: 40%;}
+}
+
+.loginView_changeP > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* 사이드바 로그인 페이지 내용 */
+
+.loginView_changeP_loginContents {
+    z-index: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    /* transform: translateX(0%); */
+    right: 0%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.7s ease-in-out, right 0.7s ease-in-out;
+    transition-delay: 0.2s;
+}
+
+.logSignChanging .loginView_changeP_loginContents {
+    /* transform: translateX(150%); */
+    right: -150%;
+    transition-delay: 0s;
+}
+
+.findPassChanging .loginView_changeP_loginContents {
+    right: -150%;
+    transition-delay: 0s;
+}
+
+/* 사이드바 회원가입 페이지 내용*/
+
+.loginView_changeP_signupContents {
+    z-index: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    /* transform: translateX(-150%); */
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.7s ease-in-out, left 0.7s ease-in-out;
+    transition-delay: 0s;
+}
+
+.logSignChanging .loginView_changeP_signupContents {
+    /* transform: translateX(0%); */
+    left: 0%;
+    transition-delay: 0.2s;
+}
+
+/* 사이드바 비밀번호 찾기 페이지 내용*/
+
+.loginView_changeP_findPassContents {
+    z-index: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: -150%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.7s ease-in-out, right 0.7s ease-in-out;
+    transition-delay: 0s;
+}
+
+.findPassChanging .loginView_changeP_findPassContents {
+    right: 0%;
+    transition-delay: 0.2s;
+}
+
+/* 사이드바 내용 틀 */
+
+.loginView_changeP_loginTitle, .loginView_changeP_signupTitle, .loginView_changeP_findPassTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 20%;
+}
+
+.loginView_changeP_loginTitle > h1, .loginView_changeP_signupTitle > h1, .loginView_changeP_findPassTitle > h1 {
+    color: #FFFFFF;
+    font-size: 3.5rem;
+}
+
+.loginView_changeP_loginComment, .loginView_changeP_signupComment, .loginView_changeP_findPassComment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 20%;
+}
+
+.loginView_changeP_loginComment > p, .loginView_changeP_signupComment > p, .loginView_changeP_findPassComment > p {
+    margin: 1%;
+    color: #FFFFFF;
+    font-size: 2rem;
+}
+
+.loginView_changeP_loginButton, .loginView_changeP_signupButton, .loginView_changeP_findPassButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 20%;
+}
+
+.loginView_changeP_loginButton > button, .loginView_changeP_signupButton > button, .loginView_changeP_findPassButton > button {
+    border-radius: 200px;
+    border: 2px solid #FFFFFF;
+    width: 40%;
+    height: 45%;
+    background: #ffffff00;
+    box-shadow: none;
+    color: #FFFFFF;
+    font-size: 1.8rem;
+    outline: none;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.loginView_changeP_loginButton > button:hover, .loginView_changeP_signupButton > button:hover, .loginView_changeP_findPassButton > button:hover {
+    width: 42%;
+    height: 50%;
+    background: rgba(255, 255, 255, 0.050);
+    font-size: 1.9rem;
+}
+
+.loginView_changeP_loginButton > button:active, .loginView_changeP_signupButton > button:active, .loginView_changeP_findPassButton > button:active {
+    width: 40%;
+    height: 45%;
+    font-size: 1.8rem;
+}
