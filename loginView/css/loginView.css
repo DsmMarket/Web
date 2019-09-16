@@ -553,15 +553,6 @@ body {
 
 /* 비밀번호찾기창 내용 */
 
-/*
-.loginView_findPassP
-.loginView_findPass_title > h1
-.loginView_findPass_comment > p
-.loginView_findPass_email > input
-.loginView_findPass_comment > p
-.loginView_findPass_confirm > input
-*/
-
 .loginView_findPassP_title {
     display: flex;
     align-items: center;
