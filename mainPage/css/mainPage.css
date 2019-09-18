@@ -48,6 +48,7 @@ body {
 	background-attachment: fixed;
 	overflow-x: hidden;
 	user-select: none;
+	background-color: dimgray;
 }
 /* * { background-color: rgba(255,0,0,.2); }
 * * { background-color: rgba(0,255,0,.2); }
@@ -302,6 +303,16 @@ body {
 	background-repeat: no-repeat;
 }
 
+.mainPage_contentsTop > article > div::after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to bottom, #313131, #00000024);
+}
+
 #mainPage_contents_category::before {
 	background-image: url('../src/forest.jpg');
 }
@@ -332,7 +343,10 @@ body {
 	background-image: url('../src/.png');
 }
 
-
+.mainPage_contents_categorys {
+	z-index: 5;
+	position: relative;
+}
 
 
 .mainPage_contentsBottom {
@@ -418,24 +432,52 @@ body {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: space-between;
 	position: absolute;
 	right: 1%;
 	width: 10.2%;
 	min-width: 170px;
 	height: 40%;
-	color: black;
 	font-size: 1.2rem;
-	text-decoration: none;
 }
 
 .mainPage_itemCarousel_link::after {
 	content: '';
+	position: absolute;
+	right: 0;
 	width: 17px;
 	height: 17px;
-	background-image: url('../src/right-arrowBlack.png');
+	background-image: url('../src/right-arrowGray.png');
 	background-size: cover;
 	background-repeat: no-repeat;
+	transition: all 0.1s ease-in-out;
+}
+.mainPage_itemCarousel_link:hover::after {
+	background-image: url('../src/right-arrowBlack.png');
+}
+
+.mainPage_itemCarousel_link > a {
+	z-index: 5;
+	position: absolute;
+	width: 100%;
+	color: #C5C5C5;
+	text-decoration: none;
+	transition: all 0.1s ease-in-out;
+}
+
+.mainPage_itemCarousel_link:hover > a {
+	color: #000000;
+}
+
+.mainPage_itemCarousel_link > a:nth-child(2) {
+	display: none;
+}
+
+.carouselRent .mainPage_itemCarousel_link > a:nth-child(1) {
+	display: none;
+}
+
+.carouselRent .mainPage_itemCarousel_link > a:nth-child(2) {
+	display: block;
 }
 
 .mainPage_itemCarousel_contentsWrapper {
@@ -465,6 +507,7 @@ body {
 .mainPage_itemCarousel_contentsBack {
 	left: 5%;
 	background-image: url('../src/left-arrowGray.png');
+	transition: all 0.1s ease-in-out;
 }
 
 .mainPage_itemCarousel_contentsBack:hover {
@@ -474,6 +517,7 @@ body {
 .mainPage_itemCarousel_contentsNext {
 	right: 5%;
 	background-image: url('../src/right-arrowGray.png');
+	transition: all 0.1s ease-in-out;
 }
 
 .mainPage_itemCarousel_contentsNext:hover {
