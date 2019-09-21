@@ -152,6 +152,7 @@ function findPassButton_pressed() {
         .then((response) => {
             if(response.status === 200) {
                 alert('confirm success');
+                
 
             } else if(response.status === 403) {
                 alert('incorrect code');
