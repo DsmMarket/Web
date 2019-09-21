@@ -201,29 +201,35 @@ body {
 	width: 100%;
 	height: 30%;
 	min-height: 45px;
-	background: linear-gradient( 45deg, #4CAF50, #8af388);
+	background: linear-gradient(to right, #4CAF50, #80E27E);
 }
 
 .mainPage_header_menu > ul {
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
-	justify-content: space-between;
+	justify-content: space-around;
 	width: 100%;
 	height: 100%;
 	min-height: 45px;
 }
 
 .mainPage_header_menuContents {
+	position: relative;
 	width: 16%;
 	height: 46px;
 	font-size: 2rem;
 	cursor: pointer;
 	overflow: hidden;
 	transition: height 0.6s;
+	overflow: hidden;
 }
 
 #menuContents_post:hover {
+	height: 160px;
+}
+
+#menuContents_myPage:hover {
 	height: 160px;
 }
 
@@ -231,12 +237,83 @@ body {
 	height: 388px;
 }
 
-.mainPage_header_menuContents > a {
+.mainPage_header_menuContents > div {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: relative;
 	width: 100%;
 	height: 46px;
+	background-color: none;
+	color: #000000;
+	overflow: hidden;
+	transition: background-color 0.4s ease-in-out;
+	transition-delay: 0.25s;
+}
+
+.mainPage_header_menuContents:hover > div {
+	background-color: #4CAF50;
+	font-size: 1.7rem;
+	transition-delay: none;
+}
+
+.mainPage_header_menuContents > div:active {
+	background-color: #57c55b;
+	font-size: 1.6rem;
+	transition: background-color 0.1s ease-in-out;
+	transition-delay: none;
+}
+
+.mainPage_header_menuContents > div::before, .mainPage_header_menuContents > div::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 5px;
+	background: #087F23;
+	transition: transform 0.3s ease-in-out;
+}
+
+.mainPage_header_menuContents > div::before {
+	transform: translateX(-101%);
+	top: 0;
+}
+
+.mainPage_header_menuContents > div::after {
+	transform: translateX(101%);
+	bottom: 0;
+}
+
+.mainPage_header_menuContents > div > a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transition: font-size 0.1s ease-in-out;
+}
+
+.mainPage_header_menuContents > div > a::before, .mainPage_header_menuContents > div > a::after {
+	content: "";
+	position: absolute;
+	width: 5px;
+	height: 100%;
+	background: #087F23;
+	transition: transform 0.3s ease-in-out;
+}
+
+.mainPage_header_menuContents > div > a::before {
+	left: 0;
+	transform: translateY(-100%);
+}
+
+.mainPage_header_menuContents > div > a::after {
+	right: 0;
+	transform: translateY(100%);
+}
+
+.mainPage_header_menuContents:hover > div::before, .mainPage_header_menuContents:hover > div::after, .mainPage_header_menuContents:hover > div > a::before, .mainPage_header_menuContents:hover > div > a::after {
+	transform: translate(0, 0);
 }
 
 .mainPage_header_menuContents > ul {
@@ -244,10 +321,15 @@ body {
 	grid-gap: 10px;
 	width: 100%;
 	overflow: hidden;
-	background-color: #FFFFFF;
+	background-color: #c9ecc9;
 }
 
 .mainPage_header_menuContents_post {
+	grid-template-rows: repeat(2, 1fr);
+	height: 114px;
+}
+
+.mainPage_header_menuContents_myPage {
 	grid-template-rows: repeat(2, 1fr);
 	height: 114px;
 }
@@ -264,8 +346,34 @@ body {
 }
 
 .mainPage_header_menuContents > ul > li > a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
 	width: 90%;
 	height: 90%;
+	transition: background-color 0.3s ease-in-out;
+}
+
+.mainPage_header_menuContents > ul > li > a:hover {
+	background-color: #9fda9f;
+}
+
+.mainPage_header_menuContents > ul > li > a::before {
+	content: "";
+	border-radius: 3px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	transform: translateX(-110%);
+	width: 100%;
+	height: 3px;
+	background-color: #4CAF50;
+	transition: transform 0.3s ease-in-out;
+}
+
+.mainPage_header_menuContents > ul > li > a:hover::before {
+	transform: translateX(0);
 }
 
 .mainPage_contents {
@@ -318,6 +426,11 @@ body {
 	background-size: cover;
 	background-position: center;  
 	background-repeat: no-repeat;
+	transition: transform 0.3s ease-in-out;
+}
+
+.mainPage_contents_block:hover::before {
+	transform: scale(1.05, 1.05);
 }
 
 .mainPage_contents_block::after {
@@ -327,7 +440,14 @@ body {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(to bottom, #313131, #00000024);
+	background: linear-gradient(to bottom, #313131, #00000024, #00000024);
+	background-size: 100% 150%;
+	background-position: 0% 0%;
+	transition: background-position 0.5s ease-in-out;
+}
+
+.mainPage_contents_block:hover::after {
+	background-position: 0% 75%;
 }
 
 .mainPage_contents_block > div {
@@ -782,46 +902,7 @@ body {
 	font-size: 1.2rem;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .mainPage_footer {
 	width: 100%;
 	height: 50px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
