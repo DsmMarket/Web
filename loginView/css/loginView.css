@@ -64,6 +64,20 @@ body {
     overflow-x: hidden;
 }
 
+.loginViewOut {
+    z-index: 100;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 50px;
+    height: 50px;
+    background-image: url('../src/close.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
 /* 로그인뷰 배경화면 */
 
 .loginView_background {
@@ -82,7 +96,7 @@ body {
     left: 1%;
     width: 25.88%;
     height: 41.2%;
-    background-image: url('../image/loginView_tree1.png');
+    background-image: url('../src/loginView_tree1.png');
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -93,7 +107,7 @@ body {
     right: 1%;
     width: 27.5%;
     height: 50%;
-    background-image: url('../image/loginView_tree2.png');
+    background-image: url('../src/loginView_tree2.png');
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -105,7 +119,7 @@ body {
     left: -1%;
     width: 26.04%;
     height: 56%;
-    background-image: url('../image/loginView_tree3.png');
+    background-image: url('../src/loginView_tree3.png');
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -117,7 +131,7 @@ body {
     right: 2%;
     width: 22.39%;
     height: 41.2%;
-    background-image: url('../image/loginView_tree4.png');
+    background-image: url('../src/loginView_tree4.png');
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -169,7 +183,7 @@ body {
     left: 1%;
     width: 25.88%;
     height: 41.2%;
-    background-image: url('./image/loginView_insideTree1.png');
+    background-image: url('./src/loginView_insideTree1.png');
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -180,7 +194,7 @@ body {
     left: 74%;
     width: 27.5%;
     height: 53%;
-    background-image: url('./image/loginView_insideTree2.png');
+    background-image: url('./src/loginView_insideTree2.png');
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -192,7 +206,7 @@ body {
     left: -1%;
     width: 26.04%;
     height: 49.59%;
-    background-image: url('./image/loginView_insideTree3.png');
+    background-image: url('./src/loginView_insideTree3.png');
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -204,7 +218,7 @@ body {
     left: 74%;
     width: 22.39%;
     height: 41.2%;
-    background-image: url('./image/loginView_insideTree4.png');
+    background-image: url('./src/loginView_insideTree4.png');
     background-size: 100%;
     background-repeat: no-repeat;
 } */
@@ -552,15 +566,6 @@ body {
 }
 
 /* 비밀번호찾기창 내용 */
-
-/*
-.loginView_findPassP
-.loginView_findPass_title > h1
-.loginView_findPass_comment > p
-.loginView_findPass_email > input
-.loginView_findPass_comment > p
-.loginView_findPass_confirm > input
-*/
 
 .loginView_findPassP_title {
     display: flex;

@@ -30,16 +30,17 @@ function loginButton_pressed() {
         alert("비밀번호를 입력해주세요.");
 
     } else {
-        axios.post(`/account/auth/login`, {
+        axios.post(`http://52.78.148.203/auth/login`, {
             "email": login_id.value,
             "password": login_password.value
         })
         .then((response) => {
             if(response.status === 200) {
                 alert('login success');
-                // localStorage.setItem("", response.data.access_token);
-                // localStorage.setItem("", response.data.refresh_token);
-
+                // console.log(`${typeof response.data.access_token}: ${response.data.access_token}, ${typeof response.data.refresh_token}: ${response.data.refresh_token}`);
+                localStorage.setItem("accessToken", response.data.access_token);
+                localStorage.setItem("refreshToken", response.data.refresh_token);
+                window.location.href = '../mainPage/mainPage.html';
             } else if(response.status === 403) {
                 alert('incorrect email or password');
 
@@ -83,7 +84,7 @@ function signupButton_pressed() {
         alert("학년을 선택하지 않으셨습니다.");
 
     } else {
-        axios.post(`/account/auth/join`, {
+        axios.post(`http://52.78.148.203/account/join`, {
             email: signup_id.value,
             password: signup_password.value,
             nick: signup_nickName.value,
@@ -152,6 +153,7 @@ function findPassButton_pressed() {
         .then((response) => {
             if(response.status === 200) {
                 alert('confirm success');
+                
 
             } else if(response.status === 403) {
                 alert('incorrect code');
