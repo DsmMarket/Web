@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link type="text/css" href="./css/mainPage.css" rel="stylesheet" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>DSMARKET-mainPage</title>
 </head>
 <body>
@@ -12,14 +13,11 @@
         <main class="mainPageContentsWrapper" role="main">
             <header class="mainPage_header">
                 <div class="mainPage_header_top">
-                    <div class="mainPage_header_logo">
-                        <a href="mainPage.html"><div class="mainPage_header_logoImg"></div></a>
-                    </div>
+                    <div class="mainPage_header_logo"></div>
                     <div class="mainPage_header_search">
                         <input id="mainPageSerch" type="text" placeholder="Search items">
                     </div>
-                    <div class="mainPage_header_goLogPas">
-                        <a href="../loginView/loginView.html">log in / sign up</a>
+                    <div id="mainPageLoginLogout" class="mainPage_header_loginLogout">
                     </div>
                 </div>
                 <nav class="mainPage_header_menu">
@@ -35,7 +33,7 @@
                             </ul>
                         </li>
                         <li id="menuContents_myPage" class="mainPage_header_menuContents">
-                            <div><a>MyPage</a></div>
+                            <div><a href="../myPage/myPage.html">MyPage</a></div>
                             <ul class="mainPage_header_menuContents_myPage">
                                 <li><a>닉네임 변경</a></li>
                                 <li><a>비밀번호 변경</a></li>
