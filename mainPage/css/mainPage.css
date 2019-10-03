@@ -1035,6 +1035,7 @@ body {
 
 .popup-showItem_header {
 	flex-direction: row;
+	align-items: center;
 	justify-content: flex-end;
 	margin: 10px 0;
 }
@@ -1044,9 +1045,12 @@ body {
 	width: 30px;
 	height: 30px;
 	cursor: pointer;
+	transition: background-image 0.2s ease-in-out;
 }
 
 #popup_showItemLike {
+	width: 25px;
+	height: 25px;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -1056,8 +1060,16 @@ body {
 	background-image: url('../src/like.png');
 }
 
+.popup-showItem_like:hover {
+	background-image: url('../src/filledLike.png');
+}
+
 .popup-showItem_filledLike {
 	background-image: url('../src/filledLike.png');
+}
+
+.popup-showItem_filledLike:hover {
+	background-image: url('../src/dislike.png');
 }
 
 #popup_showItemReport {
@@ -1065,6 +1077,10 @@ body {
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+
+#popup_showItemReport:hover {
+	background-image: url('../src/reportColor.png');
 }
 
 #popup_showItemClose {

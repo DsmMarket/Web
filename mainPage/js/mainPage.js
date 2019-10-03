@@ -244,7 +244,7 @@ const popup_shoItemPossible_time = document.getElementById('popup_shoItemPossibl
 const popup_showItemLike = document.getElementById('popup_showItemLike');
 
 function fillItemModal(data, dealRent, postId) {
-    
+    sessionStorage.setItem('itemData', [data, dealRent, postId])
     while (popup_showItemImgs.hasChildNodes()) {
         popup_showItemImgs.removeChild(popup_showItemImgs.firstChild);
     }
@@ -279,7 +279,13 @@ function fillItemModal(data, dealRent, postId) {
     popup_showItemContent.innerText = data.content;
     popup_showItemCategory.innerText = data.category;
     popup_showItemPrice.innerText = data.price;
-    popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${dealRent}, 0)`);
+    if(data.interest) {
+        popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${dealRent}, 1)`);
+        popup_showItemLike.classList.add('popup-showItem_filledLike');
+    } else {
+        popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${dealRent}, 0)`);
+        popup_showItemLike.classList.remove('popup-showItem_filledLike');
+    }
 }
 
 function itemClicked(postId, type) {
@@ -338,18 +344,21 @@ document.getElementById("popup_showItemBox").addEventListener('click', () => {
 })
 
 function changeLike(postId, type, likeType) {
-    if(likeType == 0){ 
-        axios.patch(`http://52.78.148.203/interest`, {
+    console.log("postId: " + postId, "type: " + type, localStorage.getItem("accessToken"))
+    if(likeType == 0){
+        axios.patch(`http://52.78.148.203/post/interest`, {
             "postId": postId,
             "type": type,
-            "Authorization": localStorage.getItem("accessToken"),
+        }, {
+            headers: {
+                "Authorization": localStorage.getItem("accessToken"),
+            }, 
         })
         .then((response) => {
             if(response.status === 200) {
                 console.log('likeSuccess');
-                fillItemModal(response.data, type, postId);
-                popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${dealRent}, 1)`);
-                popup_showItemLike.classList.toggle('popup-showItem_filledLike');
+                popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${type}, 1)`);
+                popup_showItemLike.classList.add('popup-showItem_filledLike');
             } else if(response.status === 401) {
                 console.log('likeFail');
                 reissuanceToken();
@@ -366,17 +375,19 @@ function changeLike(postId, type, likeType) {
 
         })
     } else if(likeType == 1) {
-        axios.patch(`http://52.78.148.203/uninterest`, {
+        axios.patch(`http://52.78.148.203/post/uninterest`, {
             "postId": postId,
             "type": type,
-            "Authorization": localStorage.getItem("accessToken"),
+        }, {
+            headers: {
+                "Authorization": localStorage.getItem("accessToken"),
+            }, 
         })
         .then((response) => {
             if(response.status === 200) {
                 console.log('likeSuccess');
-                fillItemModal(response.data, type, postId);
-                popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${dealRent}, 0)`);
-                popup_showItemLike.classList.toggle('popup-showItem_filledLike');
+                popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${type}, 0)`);
+                popup_showItemLike.classList.remove('popup-showItem_filledLike');
             } else if(response.status === 401) {
                 console.log('likeFail');
                 reissuanceToken();
