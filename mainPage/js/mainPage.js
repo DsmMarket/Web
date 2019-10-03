@@ -13,6 +13,8 @@ function isUserLogin() {
         if(response.status === 200) {
             console.log('1. login success');
             getNickName();
+            getDealList();
+            getRentList();
         } else if(response.status === 401) {
             console.log('3. invalid access token');
             changeLoginOut(1);
@@ -31,7 +33,7 @@ function isUserLogin() {
 }
 
 function getNickName() {
-    axios.get(`http://52.78.148.203//user/nick`, {
+    axios.get(`http://52.78.148.203/user/nick`, {
         headers: {
             "Authorization" : localStorage.getItem("accessToken"),
         }
@@ -65,7 +67,9 @@ function changeLoginOut(v) {
 
 function reissuanceToken() {
     axios.get(`http://52.78.148.203/token`, {
-        "refresh_token": localStorage.getItem("refreshToken"),
+        headers: {
+            "Authorization": localStorage.getItem("refreshToken"),
+        }
     })
     .then((response) => {
         if(response.status === 200) {
@@ -104,6 +108,98 @@ function setBackground() {
 }
 
 
+const mainPageItemCarouselShop = document.getElementById('mainPageItemCarouselShop');
+const mainPageItemCarouselRent = document.getElementById('mainPageItemCarouselRent');
+function fillItemCarousel(dR, data) {
+    if(dR == 'deal') {
+        data.forEach((v) => {
+            mainPageItemCarouselShop.innerHTML += `
+            <div class="mainPage_itemCarousel_content" onclick="itemClicked(${v.postId}, 0)">
+                <div class="mainPage_itemCarousel_content_image"><img src="${v.img}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';"></div>
+                <div class="mainPage_itemCarousel_content_namePrice">
+                    <h6 class="mainPage_itemCarousel_content_name">${v.title}</h6>
+                    <p class="mainPage_itemCarousel_content_price">${v.price}</p>
+                </div>
+            </div>`
+            popupOpen();
+        });
+    } else if(dR == 'rent') {
+        data.forEach((v) => {
+            mainPageItemCarouselRent.innerHTML += `
+            <div class="mainPage_itemCarousel_content" onclick="itemClicked(${v.postId}, 1)">
+                <div class="mainPage_itemCarousel_content_image"><img src="${v.img}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';"></div>
+                <div class="mainPage_itemCarousel_content_namePrice">
+                    <h6 class="mainPage_itemCarousel_content_name">${v.title}</h6>
+                    <p class="mainPage_itemCarousel_content_price">${v.price}</p>
+                </div>
+            </div>`
+            popupOpen();
+        });
+    } else {
+        console.log('deal or rent fail');
+    }
+}
+
+function getDealList() {
+    axios.get(`http://52.78.148.203/list/deal`, {
+        params: {
+            "page": 1,
+            "pagesize": 4,
+            "search": "",
+            "category": "",
+        },
+        headers: {
+            "Authorization": localStorage.getItem("accessToken"),
+        }
+    })
+    .then((response) => {
+        if(response.status === 200) {
+            console.log('9. refer success(Deal)');
+            fillItemCarousel('deal', response.data.list);
+        } else if(response.status === 401) {
+            console.log('3. invalid access token(Deal)');
+
+        } else {
+            console.log(`Error: status code[${response.status}]`);
+
+        }
+    })
+    .catch((reject) => {
+        console.log("상품 조회에 실패하셨습니다." + reject + " and " + reject.response);
+
+    })
+}
+function getRentList() {
+    axios.get(`http://52.78.148.203/list/rent`, {
+        params: {
+            "page": 1,
+            "pagesize": 4,
+            "search": "",
+            "category": "",
+        },
+        headers: {
+            "Authorization": localStorage.getItem("accessToken"),
+        }
+    })
+    .then((response) => {
+        if(response.status === 200) {
+            console.log('9. refer success(rent)');
+            fillItemCarousel('rent', response.data.list);
+        } else if(response.status === 401) {
+            console.log('3. invalid access token(rent)');
+
+        } else {
+            console.log(`Error: status code[${response.status}]`);
+
+        }
+    })
+    .catch((reject) => {
+        console.log("대여 조회에 실패하셨습니다." + reject + " and " + reject.response);
+
+    })
+}
+
+
 const mainPage_itemCarousel = document.querySelector('.mainPage_itemCarousel');
 
 function carouselChangedLeft() {
@@ -131,6 +227,182 @@ function carouselChangedRight() {
     } else {
         mainPage_itemCarousel.classList.add('carouselShopChangedRight');
         mainPage_itemCarousel.classList.add('carouselRent');
+    }
+}
+
+const popup_showItemImg = document.getElementById('popup_showItemImg');
+const popup_showItemImgs = document.getElementById('popup_showItemImgs');
+
+const popup_showItemTitle = document.getElementById('popup_showItemTitle');
+const popup_showItemAuthor = document.getElementById('popup_showItemAuthor');
+const popup_showItemCreatedAt = document.getElementById('popup_showItemCreatedAt');
+const popup_showItemContent = document.getElementById('popup_showItemContent');
+const popup_showItemCategory = document.getElementById('popup_showItemCategory');
+const popup_showItemPrice = document.getElementById('popup_showItemPrice');
+const popup_shoItemPossible_time = document.getElementById('popup_shoItemPossible_time');
+
+const popup_showItemLike = document.getElementById('popup_showItemLike');
+
+function fillItemModal(data, dealRent, postId) {
+    sessionStorage.setItem('itemData', [data, dealRent, postId])
+    while (popup_showItemImgs.hasChildNodes()) {
+        popup_showItemImgs.removeChild(popup_showItemImgs.firstChild);
+    }
+    
+    if(dealRent == 1) {
+        console.log(data.possible_time)
+        if(data.possible_time != "") {
+            popup_shoItemPossible_time.parentElement
+            popup_shoItemPossible_time.innerText = data.possible_time;
+        } else {
+            popup_shoItemPossible_time.innerText = "";
+        }
+        popup_showItemImgs.innerHTML += `
+        <li>
+            <img src="${data.img}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';">
+        </li>`
+        popup_showItemImg.setAttribute('src', data.img);
+    } else {
+        popup_shoItemPossible_time.innerText = "";
+        data.img.forEach((v, i) => {
+            popup_showItemImgs.innerHTML += `
+            <li>
+                <img src="${v}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';">
+            </li>`
+        });
+        popup_showItemImg.setAttribute('src', data.img[0]);
+    }
+
+    popup_showItemTitle.innerText = data.title;
+    popup_showItemAuthor.innerText = data.author;
+    popup_showItemCreatedAt.innerText = data.createdAt.substring(0, data.createdAt.indexOf('T'));
+    popup_showItemContent.innerText = data.content;
+    popup_showItemCategory.innerText = data.category;
+    popup_showItemPrice.innerText = data.price;
+    if(data.interest) {
+        popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${dealRent}, 1)`);
+        popup_showItemLike.classList.add('popup-showItem_filledLike');
+    } else {
+        popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${dealRent}, 0)`);
+        popup_showItemLike.classList.remove('popup-showItem_filledLike');
+    }
+}
+
+function itemClicked(postId, type) {
+    axios.get(`http://52.78.148.203/post`, {
+        params: {
+            "postId": postId,
+            "type": type,
+        },
+        headers: {
+            "Authorization": localStorage.getItem("accessToken"),
+        }
+    })
+    .then((response) => {
+        if(response.status === 200) {
+            console.log('itemClickedSuccess');
+            fillItemModal(response.data, type, postId);
+        } else if(response.status === 401) {
+            console.log('itemClickedFail');
+            reissuanceToken();
+        } else if(response.status === 410) {
+            console.log('itemClickedFail');
+
+        } else {
+            console.log(`Error: status code[${response.status}]`);
+
+        }
+    })
+    .catch((reject) => {
+        console.log("개별 상품 조회에 실패하셨습니다." + reject + " and " + reject.response);
+
+    })
+}
+
+const popup_showItem = document.getElementById('popup_showItem');
+const popup_showItemClose = document.getElementById('popup_showItemClose');
+
+function popupOpen() {
+    const mainPage_itemCarousel_content = document.querySelectorAll(".mainPage_itemCarousel_content");
+    mainPage_itemCarousel_content.forEach((e) => {
+        e.addEventListener('click', () => {
+            popup_showItem.classList.remove("hidden");
+        })
+    })
+}
+
+popup_showItemClose.addEventListener('click', () => {
+    popup_showItem.classList.add("hidden");
+})
+
+popup_showItem.addEventListener('click', () => {
+    popup_showItem.classList.add("hidden");
+})
+
+document.getElementById("popup_showItemBox").addEventListener('click', () => {
+    event.stopPropagation();
+})
+
+function changeLike(postId, type, likeType) {
+    console.log("postId: " + postId, "type: " + type, localStorage.getItem("accessToken"))
+    if(likeType == 0){
+        axios.patch(`http://52.78.148.203/post/interest`, {
+            "postId": postId,
+            "type": type,
+        }, {
+            headers: {
+                "Authorization": localStorage.getItem("accessToken"),
+            }, 
+        })
+        .then((response) => {
+            if(response.status === 200) {
+                console.log('likeSuccess');
+                popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${type}, 1)`);
+                popup_showItemLike.classList.add('popup-showItem_filledLike');
+            } else if(response.status === 401) {
+                console.log('likeFail');
+                reissuanceToken();
+            } else if(response.status === 410) {
+                console.log('likeFail');
+
+            } else {
+                console.log(`Error: status code[${response.status}]`);
+
+            }
+        })
+        .catch((reject) => {
+            console.log("상품 관심표시에 실패하셨습니다." + reject + " and " + reject.response);
+
+        })
+    } else if(likeType == 1) {
+        axios.patch(`http://52.78.148.203/post/uninterest`, {
+            "postId": postId,
+            "type": type,
+        }, {
+            headers: {
+                "Authorization": localStorage.getItem("accessToken"),
+            }, 
+        })
+        .then((response) => {
+            if(response.status === 200) {
+                console.log('likeSuccess');
+                popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${type}, 0)`);
+                popup_showItemLike.classList.remove('popup-showItem_filledLike');
+            } else if(response.status === 401) {
+                console.log('likeFail');
+                reissuanceToken();
+            } else if(response.status === 410) {
+                console.log('likeFail');
+
+            } else {
+                console.log(`Error: status code[${response.status}]`);
+
+            }
+        })
+        .catch((reject) => {
+            console.log("상품 관심취소에 실패하셨습니다." + reject + " and " + reject.response);
+
+        })
     }
 }
 

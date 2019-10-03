@@ -13,7 +13,7 @@
         <main class="mainPageContentsWrapper" role="main">
             <header class="mainPage_header">
                 <div class="mainPage_header_top">
-                    <div class="mainPage_header_logo"></div>
+                    <div class="mainPage_header_logoImg"></div>
                     <div class="mainPage_header_search">
                         <input id="mainPageSerch" type="text" placeholder="Search items">
                     </div>
@@ -47,7 +47,7 @@
                                 <li><a>전자제품</a></li>
                                 <li><a>식품</a></li>
                                 <li><a>생필품</a></li>
-                                <li><a>Etc..</a></li>
+                                <li><a href="../product-quick-view/index.html">Etc..</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -120,8 +120,8 @@
                         </div>
                         <div class="mainPage_itemCarousel_contentsWrapper">
                             <button id="itemCarousel_back" class="mainPage_itemCarousel_contentsBack" onclick="carouselChangedLeft()"></button>
-                            <div class="mainPage_itemCarousel_contentShopping">
-                                <div class="mainPage_itemCarousel_content">
+                            <div id="mainPageItemCarouselShop" class="mainPage_itemCarousel_contentShopping">
+                                <!-- <div class="mainPage_itemCarousel_content">
                                     <div class="mainPage_itemCarousel_content_image"></div>
                                     <div class="mainPage_itemCarousel_content_namePrice">
                                         <h6 class="mainPage_itemCarousel_content_name">상품이름</h6>
@@ -148,10 +148,10 @@
                                         <h6 class="mainPage_itemCarousel_content_name">상품이름</h6>
                                         <p class="mainPage_itemCarousel_content_price">상품 가격</p>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
-                            <div class="mainPage_itemCarousel_contentRent">
-                                <div class="mainPage_itemCarousel_content">
+                            <div id="mainPageItemCarouselRent" class="mainPage_itemCarousel_contentRent">
+                                <!-- <div class="mainPage_itemCarousel_content">
                                     <div class="mainPage_itemCarousel_content_image"></div>
                                     <div class="mainPage_itemCarousel_content_namePrice">
                                         <h6 class="mainPage_itemCarousel_content_name">대여이름</h6>
@@ -178,7 +178,7 @@
                                         <h6 class="mainPage_itemCarousel_content_name">대여이름</h6>
                                         <p class="mainPage_itemCarousel_content_price">대여 가격</p>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <button id="itemCarousel_next" class="mainPage_itemCarousel_contentsNext" onclick="carouselChangedRight()"></button>
                         </div>
@@ -189,6 +189,56 @@
         <footer class="mainPage_footer">
     
         </footer>
+        <div id="popup_showItem" class="popup-showItem hidden">
+            <section id="popup_showItemBox" class="popup-showItem_box">
+                <article class="popup-showItem_img">
+                    <div><img id="popup_showItemImg"></div>
+                    <ul id="popup_showItemImgs"></ul>
+                </article>
+                <article class="popup-showItem_contents">
+                    <ul>
+                        <li class="popup-showItem_header">
+                            <a id="popup_showItemLike" class="popup-showItem_like"></a>
+                            <a id="popup_showItemReport"></a>
+                            <a id="popup_showItemClose"></a>
+                        </li>
+                        <li class="popup-showItem_title">
+                            <h2 id="popup_showItemTitle">ERR</h2>
+                        </li>
+                        <li class="popup-showItem_nameDate">
+                            <h4><p>작성자: </p><p id="popup_showItemAuthor">ERR</p></h4>
+                            <h4><p id="popup_showItemCreatedAt">ERR</p></h4>
+                        </li>
+                        <li>
+                            <h4><p>대여 가능시간:</p> <p id="popup_shoItemPossible_time">ERR</p></h4>
+                        </li>
+                        <li class="popup-showItem_introduce">
+                            <h3>제품설명</h3>
+                            <div id="popup_showItemContent">ERR</div>
+                        </li>
+                        <li class="popup-showItem_category">
+                            <h4><p>카테고리: </p><p id="popup_showItemCategory">ERR</p></h4>
+                        </li>
+                        <li class="popup-showItem_price">
+                            <h4><p>가격: </p><p id="popup_showItemPrice">ERR</p></h4>
+                        </li>
+                        <li class="popup-showItem_chat">
+                            <button>체팅하러가기</button>
+                        </li>
+                        <li class="popup-showItem_simItem">
+                            <h3>관련상품</h3>
+                            <div></div>
+                        </li>
+                        <li class="popup-showItem_comment">
+                            <div>
+                                <h3><p>댓글</p><p></p></h3>
+                            </div>
+                            <div></div>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+        </div>
     </div>
     <script src="./js/mainPage.js"></script>
 </body>
