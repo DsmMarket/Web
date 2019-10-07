@@ -1,0 +1,166 @@
+/*reset*/
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic", Gothic, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+image {
+  border: 0;
+}
+
+li {
+  list-style: none;
+}
+
+html,body {
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+}
+
+/*Header*/
+
+#main-header {
+  width: 100%;
+  height: 20%;
+}
+
+/*Navigation*/
+
+#main-navigation {
+  cursor: pointer;
+  width: 80%;
+  height: 10%; 
+  margin: 0 auto;
+}
+
+#main-navigation > ul {
+  display: flex;
+  overflow: hidden;
+  text-align: center;
+  background-color: #34343c;
+}
+
+#main-navigation > ul > li {
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  line-height: 45px;
+  font-size: 15px;
+}
+
+#main-navigation > ul > li > a:hover {
+  color: yellow;
+}
+
+#main-navigation > ul > li > a {
+  text-decoration: none;
+  display: block;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+
+/*Content*/
+
+#content {
+  width: 100%;
+  height: 45rem;
+}
+
+/*Aside*/
+
+#main-aside {
+  float: left;
+  margin-left: 3%;
+  width: 10%;
+  height: 100%;
+}
+
+#main-aside > .aside-list {
+  background-color: whitesmoke;
+  text-align: center;
+  margin-top: 15%;
+  width: 85%;
+  height: 65%;
+}
+
+.aside-list li a {
+  display: block;
+  padding: 5%;
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+}
+
+.aside-list > h3{
+  display: block;
+  margin-bottom: 15%;
+  padding-top: 10%;
+  font-size: 1rem;
+}
+
+/*Section*/
+
+#main-section {
+  float: left;
+  width: 75%;
+  height: 100%;
+}
+
+/*Paper*/
+
+.paper {
+  float: left;
+  width: 10%;
+  margin: 1%;
+  padding: 1% 1% 0;
+  font-size: 11px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+}
+
+.paper-content {
+  margin: 0px -10%;
+  margin-top: 0%;
+  padding: 6% 7%;
+  background: #f2f0f0;
+  overflow: hidden;
+}
+
+.paper-description {
+  margin: 3px;
+}
+
+.paper-link {
+  display: block;
+  float: left;
+}
+
+.paper-link > img {
+  width: 50px;
+  height: 50px;
+}
+
+.paper-text {
+  float: left;
+  width: 150px;
+}
+
+.paper-holder > a > img {
+  width: 100%;
+  height: 100px;
+}
+
+/*Footer*/
+
+#main-footer {
+  width: 100%;
+  height: 15%;
+}
