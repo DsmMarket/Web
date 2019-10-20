@@ -4,7 +4,7 @@ window.addEventListener('load', () => {
 })
 
 function isUserLogin() {
-    axios.get(`http://52.78.148.203/auth/login`, {
+    axios.get(`https://dsm-market.ga/auth/login`, {
         headers: {
             "Authorization" : localStorage.getItem("accessToken"),
         }
@@ -33,7 +33,7 @@ function isUserLogin() {
 }
 
 function getNickName() {
-    axios.get(`http://52.78.148.203/user/nick`, {
+    axios.get(`https://dsm-market.ga/user/nick`, {
         headers: {
             "Authorization" : localStorage.getItem("accessToken"),
         }
@@ -66,7 +66,7 @@ function changeLoginOut(v) {
 }
 
 function reissuanceToken() {
-    axios.get(`http://52.78.148.203/token`, {
+    axios.get(`https://dsm-market.ga/token`, {
         headers: {
             "Authorization": localStorage.getItem("refreshToken"),
         }
@@ -141,7 +141,7 @@ function fillItemCarousel(dR, data) {
 }
 
 function getDealList() {
-    axios.get(`http://52.78.148.203/list/deal`, {
+    axios.get(`https://dsm-market.ga/list/deal`, {
         params: {
             "page": 1,
             "pagesize": 4,
@@ -170,7 +170,7 @@ function getDealList() {
     })
 }
 function getRentList() {
-    axios.get(`http://52.78.148.203/list/rent`, {
+    axios.get(`https://dsm-market.ga/list/rent`, {
         params: {
             "page": 1,
             "pagesize": 4,
@@ -230,66 +230,32 @@ function carouselChangedRight() {
     }
 }
 
-const popup_showItemImg = document.getElementById('popup_showItemImg');
-const popup_showItemImgs = document.getElementById('popup_showItemImgs');
+const popup_showItem = document.getElementById('popup_showItem');
+const popup_showItemClose = document.getElementById('popup_showItemClose');
 
-const popup_showItemTitle = document.getElementById('popup_showItemTitle');
-const popup_showItemAuthor = document.getElementById('popup_showItemAuthor');
-const popup_showItemCreatedAt = document.getElementById('popup_showItemCreatedAt');
-const popup_showItemContent = document.getElementById('popup_showItemContent');
-const popup_showItemCategory = document.getElementById('popup_showItemCategory');
-const popup_showItemPrice = document.getElementById('popup_showItemPrice');
-const popup_shoItemPossible_time = document.getElementById('popup_shoItemPossible_time');
-
-const popup_showItemLike = document.getElementById('popup_showItemLike');
-
-function fillItemModal(data, dealRent, postId) {
-    sessionStorage.setItem('itemData', [data, dealRent, postId])
-    while (popup_showItemImgs.hasChildNodes()) {
-        popup_showItemImgs.removeChild(popup_showItemImgs.firstChild);
-    }
-    
-    if(dealRent == 1) {
-        console.log(data.possible_time)
-        if(data.possible_time != "") {
-            popup_shoItemPossible_time.parentElement
-            popup_shoItemPossible_time.innerText = data.possible_time;
-        } else {
-            popup_shoItemPossible_time.innerText = "";
-        }
-        popup_showItemImgs.innerHTML += `
-        <li>
-            <img src="${data.img}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';">
-        </li>`
-        popup_showItemImg.setAttribute('src', data.img);
-    } else {
-        popup_shoItemPossible_time.innerText = "";
-        data.img.forEach((v, i) => {
-            popup_showItemImgs.innerHTML += `
-            <li>
-                <img src="${v}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';">
-            </li>`
-        });
-        popup_showItemImg.setAttribute('src', data.img[0]);
-    }
-
-    popup_showItemTitle.innerText = data.title;
-    popup_showItemAuthor.innerText = data.author;
-    popup_showItemCreatedAt.innerText = data.createdAt.substring(0, data.createdAt.indexOf('T'));
-    popup_showItemContent.innerText = data.content;
-    popup_showItemCategory.innerText = data.category;
-    popup_showItemPrice.innerText = data.price;
-    if(data.interest) {
-        popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${dealRent}, 1)`);
-        popup_showItemLike.classList.add('popup-showItem_filledLike');
-    } else {
-        popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${dealRent}, 0)`);
-        popup_showItemLike.classList.remove('popup-showItem_filledLike');
-    }
+function popupOpen() {
+    const mainPage_itemCarousel_content = document.querySelectorAll(".mainPage_itemCarousel_content");
+    mainPage_itemCarousel_content.forEach((e) => {
+        e.addEventListener('click', () => {
+            popup_showItem.classList.remove("hidden");
+        })
+    })
 }
 
+popup_showItemClose.addEventListener('click', () => {
+    popup_showItem.classList.add("hidden");
+})
+
+popup_showItem.addEventListener('click', () => {
+    popup_showItem.classList.add("hidden");
+})
+
+document.getElementById("popup_showItemBox").addEventListener('click', () => {
+    event.stopPropagation();
+})
+
 function itemClicked(postId, type) {
-    axios.get(`http://52.78.148.203/post`, {
+    axios.get(`https://dsm-market.ga/post`, {
         params: {
             "postId": postId,
             "type": type,
@@ -319,34 +285,132 @@ function itemClicked(postId, type) {
     })
 }
 
-const popup_showItem = document.getElementById('popup_showItem');
-const popup_showItemClose = document.getElementById('popup_showItemClose');
+const popup_showItemImg = document.getElementById('popup_showItemImg');
+const popup_showItemImgs = document.getElementById('popup_showItemImgs');
 
-function popupOpen() {
-    const mainPage_itemCarousel_content = document.querySelectorAll(".mainPage_itemCarousel_content");
-    mainPage_itemCarousel_content.forEach((e) => {
-        e.addEventListener('click', () => {
-            popup_showItem.classList.remove("hidden");
-        })
+const popup_showItemTitle = document.getElementById('popup_showItemTitle');
+const popup_showItemAuthor = document.getElementById('popup_showItemAuthor');
+const popup_showItemCreatedAt = document.getElementById('popup_showItemCreatedAt');
+const popup_showItemContent = document.getElementById('popup_showItemContent');
+const popup_showItemCategory = document.getElementById('popup_showItemCategory');
+const popup_showItemPrice = document.getElementById('popup_showItemPrice');
+const popup_shoItemPossible_time = document.getElementById('popup_shoItemPossible_time');
+
+const popup_showItemLike = document.getElementById('popup_showItemLike');
+
+function fillItemModal(data, type, postId) {
+    sessionStorage.setItem('itemData', [data, type, postId])
+    while (popup_showItemImgs.hasChildNodes()) {
+        popup_showItemImgs.removeChild(popup_showItemImgs.firstChild);
+    }
+    
+    if(type == 1) {
+        console.log(data.possible_time)
+        if(data.possible_time != "") {
+            popup_shoItemPossible_time.parentElement
+            popup_shoItemPossible_time.innerText = data.possible_time;
+        } else {
+            popup_shoItemPossible_time.innerText = "";
+        }
+        popup_showItemImgs.innerHTML += `
+        <li>
+            <img src="${data.img}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';">
+        </li>`
+        popup_showItemImg.setAttribute('src', data.img);
+    } else {
+        popup_shoItemPossible_time.innerText = "";
+        data.img.forEach((v) => {
+            popup_showItemImgs.innerHTML += `
+            <li>
+                <img src="${v}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';">
+            </li>`
+        });
+        popup_showItemImg.setAttribute('src', data.img[0]);
+    }
+
+    popup_showItemTitle.innerText = data.title;
+    popup_showItemAuthor.innerText = data.author;
+    popup_showItemCreatedAt.innerText = data.createdAt.substring(0, data.createdAt.indexOf('T'));
+    popup_showItemContent.innerText = data.content;
+    popup_showItemCategory.innerText = data.category;
+    popup_showItemPrice.innerText = data.price;
+    if(data.interest) {
+        popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${type}, 1)`);
+        popup_showItemLike.classList.add('popup-showItem_filledLike');
+    } else {
+        popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${type}, 0)`);
+        popup_showItemLike.classList.remove('popup-showItem_filledLike');
+    }
+    getComments(type, postId);
+}
+
+function getComments(type, postId) {
+    axios.get(`https://dsm-market.ga/comment`, {
+        params: {
+            "postId": postId,
+            "type": type,
+        },
+        headers: {
+            "Authorization" : localStorage.getItem("accessToken"),
+        }
+    })
+    .then((response) => {
+        if(response.status === 200) {
+            console.log('9(refer success)');
+            fillComment(response.data);
+        } else if(response.status === 410) {
+            console.log('11(non-existent)');
+        } else {
+            console.log(`Error: status code[${response.status}]`);
+
+        }
+    })
+    .catch((reject) => {
+        console.log("댓글조회에 실패하셨습니다." + reject + " and " + reject.response);
     })
 }
 
-popup_showItemClose.addEventListener('click', () => {
-    popup_showItem.classList.add("hidden");
-})
+const popup_showItemComment = document.getElementById('popup_showItemComment');
 
-popup_showItem.addEventListener('click', () => {
-    popup_showItem.classList.add("hidden");
-})
+function fillComment(data) {
+    if(data.length > 0) {
+        data.forEach((v) => {
+            popup_showItemComment.innerHTML += `
+                <div class="popup-showItem_comment">
+                    <div>
+                        <p>${v.nick}</p>
+                        <div>
+                            <p>${v.createdAt}</p>
+                            <a></a>
+                        </div>
+                    </div>
+                    <div>${v.content}</div>
+                </div>
+            `
+        })
+    } else {
+        popup_showItemComment.innerHTML += `
+            <div class="popup-showItem_comment">
+                <div></div>
+                <div>댓글이 없습니다.</div>
+            </div>
+        `
+    }
+}
 
-document.getElementById("popup_showItemBox").addEventListener('click', () => {
-    event.stopPropagation();
+const popup_showItemAddCommentB = document.getElementById('popup_showItemAddCommentB');
+
+popup_showItemAddCommentB.addEventListener('click', () => {
+    popup_showItemAddCommentB.innerHTML = `
+        <input id="popup_showItemComment" type="text">
+    `
+    var popup_showItemAddComment = document.getElementById('popup_showItemAddComment');
 })
 
 function changeLike(postId, type, likeType) {
     console.log("postId: " + postId, "type: " + type, localStorage.getItem("accessToken"))
     if(likeType == 0){
-        axios.patch(`http://52.78.148.203/post/interest`, {
+        axios.patch(`https://dsm-market.ga/post/interest`, {
             "postId": postId,
             "type": type,
         }, {
@@ -375,7 +439,7 @@ function changeLike(postId, type, likeType) {
 
         })
     } else if(likeType == 1) {
-        axios.patch(`http://52.78.148.203/post/uninterest`, {
+        axios.patch(`https://dsm-market.ga/post/uninterest`, {
             "postId": postId,
             "type": type,
         }, {

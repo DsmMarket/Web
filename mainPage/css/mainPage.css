@@ -609,8 +609,7 @@ body {
 }
 
 #mainPage_contents_etc::before {
-	background: black;
-	background-image: url('../src/.png');
+	background-image: url('../src/etc.png');
 }
 
 .mainPage_contentsBottom {
@@ -1148,14 +1147,14 @@ body {
 	font-size: 1.3rem;
 }
 
-.popup-showItem_comment {
+.popup-showItem_comments {
 	margin: 10px 0;
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
 }
 
-.popup-showItem_comment > div {
+.popup-showItem_comments > div:nth-child(1) {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -1163,6 +1162,42 @@ body {
 	width: 100%;
 }
 
-.popup-showItem_comment > div > h3 {
+.popup-showItem_comments > div:nth-child(1) > h3 {
 	font-size: 1.3rem;
+}
+
+.popup-showItem_comments > div:nth-child(1) > a {
+	font-size: 1.8rem;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.popup-showItem_comments > div:nth-child(2) {
+	width: 100%;
+	height: auto;
+}
+
+.popup-showItem_comment {
+	margin: 5px 0;
+	border: 1px solid black;
+	padding: 2px;
+	width: calc(100% - 4px);
+}
+
+.popup-showItem_comment > div:nth-child(1) {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.popup-showItem_comment > div:nth-child(1) > p {
+	font-size: 1.1rem;
+}
+
+.popup-showItem_comment > div:nth-child(2) {
+	padding-top: 3px;
+	word-break: break-all;
+	overflow: hidden;
 }
