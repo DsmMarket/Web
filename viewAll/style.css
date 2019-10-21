@@ -34,7 +34,6 @@ html,body {
 /*Navigation*/
 
 #main-navigation {
-  cursor: pointer;
   width: 80%;
   height: 10%; 
   margin: 0 auto;
@@ -56,6 +55,7 @@ html,body {
 }
 
 #main-navigation > ul > li > a:hover {
+  cursor: pointer;
   color: yellow;
 }
 
@@ -93,15 +93,21 @@ html,body {
 
 .aside-list li a {
   display: block;
-  padding: 5%;
+  margin-left: 7%;
+  padding: 7%;
   font-size: 13px;
+  text-align: left;
   font-weight: 600;
   color: #000;
 }
 
-.aside-list > h3{
+.aside-list li a:hover {
+  background-color: gray;
+}
+
+.aside-list > h3 {
   display: block;
-  margin-bottom: 15%;
+  margin-bottom: 20%;
   padding-top: 10%;
   font-size: 1rem;
 }
@@ -114,7 +120,13 @@ html,body {
   height: 100%;
 }
 
-/*Paper*/
+/*View-item*/
+
+.view-item {
+  float: left;
+  width: 100%;
+  height: 80%;
+}
 
 .paper {
   float: left;
@@ -123,6 +135,18 @@ html,body {
   padding: 1% 1% 0;
   font-size: 11px;
   background: #fff;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+}
+
+.paper:hover {
+  cursor: pointer;
+  float: left;
+  width: 10%;
+  margin: 1%;
+  padding: 1% 1% 0;
+  font-size: 11px;
+  background: #fff;
+  outline: -webkit-focus-ring-color auto 1px;
   box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
 }
 
@@ -136,6 +160,9 @@ html,body {
 
 .paper-description {
   margin: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .paper-link {
@@ -150,12 +177,42 @@ html,body {
 
 .paper-text {
   float: left;
-  width: 150px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .paper-holder > a > img {
   width: 100%;
   height: 100px;
+}
+
+#pagination {
+  float: left;
+  width: 100%;
+  height: 20%;
+}
+
+#pagination li {
+  display: inline-block;
+}
+
+#pagination ul {
+  margin-top: 10%;
+  text-align: center;
+}
+
+#pagination a {
+  color: black;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color .5s;
+}
+
+#pagination a:hover {
+  background-color: #ddd;
 }
 
 /*Footer*/
