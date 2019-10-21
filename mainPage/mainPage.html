@@ -186,6 +186,36 @@
                 </section>
             </section>
         </main>
+        <aside id="aside_chatting" class="aside-chatting goRight">
+            <div>
+                <a id="aside_chatting_show" class="aside-chatting_show"><p>Chatting</p></a>
+            </div>
+            <div>
+                <div class="aside-cRoom_header">
+                    <div class="aside-cRoom_chatInfo"></div>
+                    <div id="aside_chattingRoom_itemInfo" class="aside-cRoom_itemInfo">
+                        <div>
+                            <div>
+                                <a id="aside_cRoom_showItemB" class="aside-cRoom_showItemB">
+                                    <div><p>상품 정보 보기</p></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="aside-cRoom_contents">
+                    <ul id="aside_chattingRoom_list" class="aside-cRoom_list"><li></li><li></li></ul>
+                    <div class="aside-cRoom_main">
+                        <div id="aside_chattingRoom_valueWrapper" class="aside-chattingRoom_valueWrapper"><div class="chat_mine"><p>Hello master branch?</p></div><div class="chat_others"><p>Who the hell you are?</p></div></div>
+                        <div class="aside-chattingRoom_postWrapper">
+                            <div><a id="aside_chattingRoom_selectPicture" class="aside-chattingRoom_selectPicture"></a></div>
+                            <div><input id="aside_chattingRoom_postInput" class="aside-chattingRoom_postInput" type="text" placeholder="텍스트를 입력해주세요"></div>
+                            <div><a id="aside_chattingRoom_chatPost" class="aside-chattingRoom_chatPost"></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
         <footer class="mainPage_footer">
     
         </footer>
@@ -223,7 +253,7 @@
                             <h4><p>가격: </p><p id="popup_showItemPrice">ERR</p></h4>
                         </li>
                         <li class="popup-showItem_chat">
-                            <button>체팅하러가기</button>
+                            <button id="popup_showItemChatting">체팅하러가기</button>
                         </li>
                         <li class="popup-showItem_comments">
                             <div>
@@ -233,13 +263,13 @@
                             <div id="popup_showItemComment">
                                 <!-- <div class="popup-showItem_comment">
                                     <div>
-                                        <p>장호승</p>
+                                        <p>ERR</p>
                                         <div>
-                                            <p>2019_12_08</p>
+                                            <p>ERRE_RR_ER</p>
                                             <a></a>
                                         </div>
                                     </div>
-                                    <div>rkrkrkkrkrkrkrkrkkr</div>
+                                    <div>error</div>
                                 </div> -->
                             </div>
                         </li>
@@ -250,6 +280,9 @@
                     </ul>
                 </article>
             </section>
+        </div>
+        <div id="popup_showImg" class="popup-showImg hidden">
+            <img id="popup_showImgImage" class="popup-showImgImage" src="">
         </div>
     </div>
     <script src="./js/mainPage.js"></script>

@@ -110,30 +110,58 @@ function setBackground() {
 
 const mainPageItemCarouselShop = document.getElementById('mainPageItemCarouselShop');
 const mainPageItemCarouselRent = document.getElementById('mainPageItemCarouselRent');
-function fillItemCarousel(dR, data) {
-    if(dR == 'deal') {
+function fillItemCarousel(type, data) {
+    if(type == 'deal') {
         data.forEach((v) => {
-            mainPageItemCarouselShop.innerHTML += `
-            <div class="mainPage_itemCarousel_content" onclick="itemClicked(${v.postId}, 0)">
+            let mainPage_itemCarousel_content = document.createElement('div');
+            mainPage_itemCarousel_content.setAttribute('class', 'mainPage_itemCarousel_content');
+            mainPage_itemCarousel_content.addEventListener('click', () => {
+                itemClicked(v.postId, 0);
+                popup_showItem.classList.remove("hidden");
+            })
+            mainPage_itemCarousel_content.innerHTML += `
                 <div class="mainPage_itemCarousel_content_image"><img src="${v.img}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';"></div>
                 <div class="mainPage_itemCarousel_content_namePrice">
                     <h6 class="mainPage_itemCarousel_content_name">${v.title}</h6>
                     <p class="mainPage_itemCarousel_content_price">${v.price}</p>
                 </div>
-            </div>`
-            popupOpen();
+            `
+            mainPageItemCarouselShop.appendChild(mainPage_itemCarousel_content);
+            // mainPageItemCarouselShop.innerHTML += `
+            // <div class="mainPage_itemCarousel_content" onclick="itemClicked(${v.postId}, 0)">
+            //     <div class="mainPage_itemCarousel_content_image"><img src="${v.img}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';"></div>
+            //     <div class="mainPage_itemCarousel_content_namePrice">
+            //         <h6 class="mainPage_itemCarousel_content_name">${v.title}</h6>
+            //         <p class="mainPage_itemCarousel_content_price">${v.price}</p>
+            //     </div>
+            // </div>`
+            // popupOpen();
         });
-    } else if(dR == 'rent') {
+    } else if(type == 'rent') {
         data.forEach((v) => {
-            mainPageItemCarouselRent.innerHTML += `
-            <div class="mainPage_itemCarousel_content" onclick="itemClicked(${v.postId}, 1)">
+            let mainPage_itemCarousel_content = document.createElement('div');
+            mainPage_itemCarousel_content.setAttribute('class', 'mainPage_itemCarousel_content');
+            mainPage_itemCarousel_content.addEventListener('click', () => {
+                itemClicked(v.postId, 1);
+                popup_showItem.classList.remove("hidden");
+            })
+            mainPage_itemCarousel_content.innerHTML += `
                 <div class="mainPage_itemCarousel_content_image"><img src="${v.img}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';"></div>
                 <div class="mainPage_itemCarousel_content_namePrice">
                     <h6 class="mainPage_itemCarousel_content_name">${v.title}</h6>
                     <p class="mainPage_itemCarousel_content_price">${v.price}</p>
                 </div>
-            </div>`
-            popupOpen();
+            `
+            mainPageItemCarouselRent.appendChild(mainPage_itemCarousel_content);
+            // mainPageItemCarouselRent.innerHTML += `
+            // <div class="mainPage_itemCarousel_content" onclick="itemClicked(${v.postId}, 1)">
+            //     <div class="mainPage_itemCarousel_content_image"><img src="${v.img}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';"></div>
+            //     <div class="mainPage_itemCarousel_content_namePrice">
+            //         <h6 class="mainPage_itemCarousel_content_name">${v.title}</h6>
+            //         <p class="mainPage_itemCarousel_content_price">${v.price}</p>
+            //     </div>
+            // </div>`
+            // popupOpen();
         });
     } else {
         console.log('deal or rent fail');
@@ -233,14 +261,14 @@ function carouselChangedRight() {
 const popup_showItem = document.getElementById('popup_showItem');
 const popup_showItemClose = document.getElementById('popup_showItemClose');
 
-function popupOpen() {
-    const mainPage_itemCarousel_content = document.querySelectorAll(".mainPage_itemCarousel_content");
-    mainPage_itemCarousel_content.forEach((e) => {
-        e.addEventListener('click', () => {
-            popup_showItem.classList.remove("hidden");
-        })
-    })
-}
+// function popupOpen() {
+//     const mainPage_itemCarousel_content = document.querySelectorAll(".mainPage_itemCarousel_content");
+//     mainPage_itemCarousel_content.forEach((e) => {
+//         e.addEventListener('click', () => {
+//             popup_showItem.classList.remove("hidden");
+//         })
+//     })
+// }
 
 popup_showItemClose.addEventListener('click', () => {
     popup_showItem.classList.add("hidden");
@@ -298,8 +326,16 @@ const popup_shoItemPossible_time = document.getElementById('popup_shoItemPossibl
 
 const popup_showItemLike = document.getElementById('popup_showItemLike');
 
+let itemData = {
+    responseData: [],
+    type: 0,
+    postId: 0
+};
+
 function fillItemModal(data, type, postId) {
-    sessionStorage.setItem('itemData', [data, type, postId])
+    itemData.responseData = data;
+    itemData.type = type;
+    itemData.postId = postId;
     while (popup_showItemImgs.hasChildNodes()) {
         popup_showItemImgs.removeChild(popup_showItemImgs.firstChild);
     }
@@ -312,18 +348,25 @@ function fillItemModal(data, type, postId) {
         } else {
             popup_shoItemPossible_time.innerText = "";
         }
-        popup_showItemImgs.innerHTML += `
-        <li>
-            <img src="${data.img}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';">
-        </li>`
+        let imgBox = document.createElement('li');
+        let img = document.createElement('img');
+        img.setAttribute('src', data.img);
+        img.setAttribute('onError', 'this.src="https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg";');
+        imgBox.appendChild(img);
+        popup_showItemImgs.appendChild(imgBox);
         popup_showItemImg.setAttribute('src', data.img);
     } else {
         popup_shoItemPossible_time.innerText = "";
         data.img.forEach((v) => {
-            popup_showItemImgs.innerHTML += `
-            <li>
-                <img src="${v}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';">
-            </li>`
+            let imgBox = document.createElement('li');
+            let img = document.createElement('img');
+            img.setAttribute('src', v);
+            img.setAttribute('onError', 'this.src="https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg";');
+            imgBox.appendChild(img);
+            imgBox.addEventListener('click', () => {
+                popup_showItemImg.setAttribute('src', v);
+            })
+            popup_showItemImgs.appendChild(imgBox);
         });
         popup_showItemImg.setAttribute('src', data.img[0]);
     }
@@ -335,20 +378,20 @@ function fillItemModal(data, type, postId) {
     popup_showItemCategory.innerText = data.category;
     popup_showItemPrice.innerText = data.price;
     if(data.interest) {
-        popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${type}, 1)`);
+        popup_showItemLike.setAttribute('onClick', `changeLike(true)`);
         popup_showItemLike.classList.add('popup-showItem_filledLike');
     } else {
-        popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${type}, 0)`);
+        popup_showItemLike.setAttribute('onClick', `changeLike(false)`);
         popup_showItemLike.classList.remove('popup-showItem_filledLike');
     }
-    getComments(type, postId);
+    getComments();
 }
 
-function getComments(type, postId) {
+function getComments() {
     axios.get(`https://dsm-market.ga/comment`, {
         params: {
-            "postId": postId,
-            "type": type,
+            "postId": itemData.postId,
+            "type": itemData.type,
         },
         headers: {
             "Authorization" : localStorage.getItem("accessToken"),
@@ -357,7 +400,7 @@ function getComments(type, postId) {
     .then((response) => {
         if(response.status === 200) {
             console.log('9(refer success)');
-            fillComment(response.data);
+            fillComment(response.data.list);
         } else if(response.status === 410) {
             console.log('11(non-existent)');
         } else {
@@ -373,6 +416,7 @@ function getComments(type, postId) {
 const popup_showItemComment = document.getElementById('popup_showItemComment');
 
 function fillComment(data) {
+    popup_showItemComment.innerHTML = '';
     if(data.length > 0) {
         data.forEach((v) => {
             popup_showItemComment.innerHTML += `
@@ -380,7 +424,7 @@ function fillComment(data) {
                     <div>
                         <p>${v.nick}</p>
                         <div>
-                            <p>${v.createdAt}</p>
+                            <p>${v.createdAt.substring(0, v.createdAt.indexOf('T'))}</p>
                             <a></a>
                         </div>
                     </div>
@@ -389,7 +433,7 @@ function fillComment(data) {
             `
         })
     } else {
-        popup_showItemComment.innerHTML += `
+        popup_showItemComment.innerHTML = `
             <div class="popup-showItem_comment">
                 <div></div>
                 <div>댓글이 없습니다.</div>
@@ -401,47 +445,47 @@ function fillComment(data) {
 const popup_showItemAddCommentB = document.getElementById('popup_showItemAddCommentB');
 
 popup_showItemAddCommentB.addEventListener('click', () => {
-    popup_showItemAddCommentB.innerHTML = `
-        <input id="popup_showItemComment" type="text">
-    `
-    var popup_showItemAddComment = document.getElementById('popup_showItemAddComment');
+    let popup_showItemAddComment = document.createElement('textarea');
+    popup_showItemAddComment.setAttribute('id', 'popup_showItemAddComment');
+    popup_showItemAddComment.addEventListener('keydown', (e) => {
+        if(e.keyCode === 13 && popup_showItemAddComment.value != "") {
+            event.preventDefault();
+            addComment(popup_showItemAddComment.value);
+        }
+    })
+    popup_showItemComment.prepend(popup_showItemAddComment);
 })
 
-function changeLike(postId, type, likeType) {
-    console.log("postId: " + postId, "type: " + type, localStorage.getItem("accessToken"))
-    if(likeType == 0){
-        axios.patch(`https://dsm-market.ga/post/interest`, {
-            "postId": postId,
-            "type": type,
-        }, {
-            headers: {
-                "Authorization": localStorage.getItem("accessToken"),
-            }, 
-        })
-        .then((response) => {
-            if(response.status === 200) {
-                console.log('likeSuccess');
-                popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${type}, 1)`);
-                popup_showItemLike.classList.add('popup-showItem_filledLike');
-            } else if(response.status === 401) {
-                console.log('likeFail');
-                reissuanceToken();
-            } else if(response.status === 410) {
-                console.log('likeFail');
+function addComment(content) {
+    axios.post(`https://dsm-market.ga/post/comment`, {
+        "postId": itemData.postId,
+        "content": content,
+        "type": itemData.type,
+    }, {
+        headers: {
+            "Authorization": localStorage.getItem("accessToken"),
+        }, 
+    })
+    .then((response) => {
+        if(response.status === 200) {
+            console.log('12(comment adding success)');
+            getComments();
+        } else {
+            console.log(`Error: status code[${response.status}]`);
 
-            } else {
-                console.log(`Error: status code[${response.status}]`);
+        }
+    })
+    .catch((reject) => {
+        console.log("댓글등록에 실패하셨습니다." + reject + " and " + reject.response);
 
-            }
-        })
-        .catch((reject) => {
-            console.log("상품 관심표시에 실패하셨습니다." + reject + " and " + reject.response);
+    })
+}
 
-        })
-    } else if(likeType == 1) {
+function changeLike(licked) {
+    if(licked){
         axios.patch(`https://dsm-market.ga/post/uninterest`, {
-            "postId": postId,
-            "type": type,
+            "postId": itemData.postId,
+            "type": itemData.type,
         }, {
             headers: {
                 "Authorization": localStorage.getItem("accessToken"),
@@ -450,7 +494,7 @@ function changeLike(postId, type, likeType) {
         .then((response) => {
             if(response.status === 200) {
                 console.log('likeSuccess');
-                popup_showItemLike.setAttribute('onClick', `changeLike(${postId}, ${type}, 0)`);
+                popup_showItemLike.setAttribute('onClick', `changeLike(false)`);
                 popup_showItemLike.classList.remove('popup-showItem_filledLike');
             } else if(response.status === 401) {
                 console.log('likeFail');
@@ -467,11 +511,63 @@ function changeLike(postId, type, likeType) {
             console.log("상품 관심취소에 실패하셨습니다." + reject + " and " + reject.response);
 
         })
+    } else {
+        axios.patch(`https://dsm-market.ga/post/interest`, {
+            "postId": itemData.postId,
+            "type": itemData.type,
+        }, {
+            headers: {
+                "Authorization": localStorage.getItem("accessToken"),
+            }, 
+        })
+        .then((response) => {
+            if(response.status === 200) {
+                console.log('likeSuccess');
+                popup_showItemLike.setAttribute('onClick', `changeLike(true)`);
+                popup_showItemLike.classList.add('popup-showItem_filledLike');
+            } else if(response.status === 401) {
+                console.log('likeFail');
+                reissuanceToken();
+            } else if(response.status === 410) {
+                console.log('likeFail');
+
+            } else {
+                console.log(`Error: status code[${response.status}]`);
+
+            }
+        })
+        .catch((reject) => {
+            console.log("상품 관심표시에 실패하셨습니다." + reject + " and " + reject.response);
+
+        })
     }
 }
 
+const popup_showItemReport = document.getElementById('popup_showItemReport');
+
+popup_showItemReport.addEventListener('click', () => {
+
+})
+
+const popup_showImg = document.getElementById('popup_showImg');
+const popup_showImgImage = document.getElementById('popup_showImgImage');
+
+popup_showItemImg.addEventListener('click', () => {
+    popup_showImg.classList.remove('hidden');
+    let imgSrc = popup_showItemImg.getAttribute('src');
+    popup_showImgImage.setAttribute('src', imgSrc);
+    popup_showImgImage.style.height = popup_showItemImg.naturalHeight;
+})
+
+popup_showImg.addEventListener('click', () => {
+    popup_showImg.classList.add('hidden');
+})
 
 
 
 
+const aside_chatting = document.getElementById('aside_chatting');
 
+document.getElementById('aside_chatting_show').addEventListener('click', () => {
+    aside_chatting.classList.toggle('goRight');
+})

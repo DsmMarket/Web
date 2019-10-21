@@ -888,7 +888,13 @@ body {
 	justify-content: center;
 	width: 250px;
 	height: 300px;
+	background-color: #FFFFFF;
 	cursor: pointer;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.mainPage_itemCarousel_content:hover {
+	background-color: #f1f1f1;
 }
 
 .mainPage_itemCarousel_content_image {
@@ -906,6 +912,12 @@ body {
 
 .mainPage_itemCarousel_content_image > img {
 	width: 100%;
+	transform: scale(1);
+	transition: transform 0.2s ease-in-out;
+}
+
+.mainPage_itemCarousel_content:hover .mainPage_itemCarousel_content_image > img {
+	transform: scale(1.1);
 }
 
 .mainPage_itemCarousel_content_namePrice {
@@ -929,6 +941,200 @@ body {
 	font-size: 1.2rem;
 }
 
+.aside-chatting {
+	z-index: 20;
+	border-radius: 10px 0 0 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: flex-start;
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 675px;
+	height: 100vh;
+	transition: right 0.5s ease-in-out;
+	overflow: hidden;
+}
+
+.aside-chatting > div:nth-child(1) {
+	width: 75px;
+	height: 100%;
+	background-color: #3f72af;
+}
+
+.aside-chatting_show {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+.aside-chatting_show > p {
+	width: 10px;
+	font-size: 1.3rem;
+	text-align: center;
+	word-wrap: break-word;
+}
+
+.aside-chatting > div:nth-child(2) {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 600px;
+	height: 100%;
+	background-color: #f9f7f7;
+}
+
+.aside-cRoom_header {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 100%;
+	height: 15%;
+	background-color: #c0d9e5;
+}
+
+.aside-cRoom_chatInfo {
+	width: 100%;
+	height: 65%;
+}
+
+.aside-cRoom_itemInfo {
+	border: 1px solid black;
+	width: calc(100% - 2px);
+	height: calc(35% - 2px);
+}
+
+.aside-cRoom_itemInfo > div {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.aside-cRoom_itemInfo > div > div {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-end;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 800px;
+}
+
+.aside-cRoom_showItemB {
+	border-top: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 50px;
+	/* background-color: #44679f; */
+	background-color: #c0d9e5;
+	cursor: pointer;
+}
+
+.aside-cRoom_contents {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 100%;
+	height: 85%;
+}
+
+.aside-cRoom_list {
+	border-right: 1px solid black;
+	padding: 8px;
+	width: calc(120px - 17px);
+	height: calc(100% - 16px);
+	background-color: #c0d9e5;
+}
+
+.aside-cRoom_list > li {
+	margin-bottom: 20px;
+	width: 104px;
+	height: 104px;
+	background-color: black;
+	cursor: pointer;
+}
+
+.aside-cRoom_main {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 480px;
+	height: 100%;
+}
+
+.aside-chattingRoom_valueWrapper {
+	width: 100%;
+	height: 100%;
+	background-color: #ddf5f7;
+}
+
+.aside-chattingRoom_postWrapper {
+	display: grid;
+	grid-template-columns: 10% 78% 12%;
+	grid-template-rows: 1fr;
+	border-top: 1px solid black;
+	width: 100%;
+	height: calc(50px - 1px);
+	background-color: #d2f6fc;
+}
+
+.aside-chattingRoom_postWrapper > div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.aside-chattingRoom_selectPicture {
+	width: 30px;
+	height: 29px;
+	background-image: url('../src/picture.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.aside-chattingRoom_postInput {
+	border: 0;
+	border-radius: 10px;
+	padding: 5px 10px 5px 10px;
+	width: calc(95% - 20px);
+	height: calc(70% - 10px);
+	background-color: #a9d2ff;
+	outline: none;
+}
+
+.aside-chattingRoom_postInput:focus {
+	border: 1px solid black;
+}
+
+.aside-chattingRoom_chatPost {
+	width: 30px;
+	height: 29px;
+	background-image: url('../src/post.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+
+.goRight {
+	right: -600px;
+}
+
 .mainPage_footer {
 	width: 100%;
 	height: 50px;
@@ -947,13 +1153,6 @@ body {
 	background: #00000099;
 	visibility: visible;
 	opacity: 1;
-	transition: all .5s;
-}
-
-.hidden {
-	opacity: 0;
-	visibility: hidden;
-	background: none;
 	transition: all .5s;
 }
 
@@ -981,6 +1180,7 @@ body {
 
 .popup-showItem_img > div > img {
 	width: 100%;
+	cursor: pointer;
 }
 
 #popup_showItemImgs {
@@ -997,6 +1197,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
+	cursor: pointer;
 }
 
 #popup_showItemImgs > li > img {
@@ -1136,15 +1337,15 @@ body {
 	margin: 3px 0;
 }
 
-.popup-showItem_simItem {
-	margin: 10px 0;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
-}
-
-.popup-showItem_simItem > h3 {
-	font-size: 1.3rem;
+.popup-showItem_chat > button {
+	border: 0;
+	border-radius: 2px;
+	width: 100px;
+	height: 25px;
+	background-color: #4CAF50;
+	text-align: center;
+	outline: none;
+	cursor: pointer;
 }
 
 .popup-showItem_comments {
@@ -1180,7 +1381,7 @@ body {
 .popup-showItem_comment {
 	margin: 5px 0;
 	border: 1px solid black;
-	padding: 2px;
+	padding: 5px;
 	width: calc(100% - 4px);
 }
 
@@ -1193,11 +1394,55 @@ body {
 }
 
 .popup-showItem_comment > div:nth-child(1) > p {
-	font-size: 1.1rem;
+	font-size: 1.15rem;
+	font-weight: bold;
 }
 
 .popup-showItem_comment > div:nth-child(2) {
-	padding-top: 3px;
+	padding-top: 10px;
+}
+
+#popup_showItemAddComment {
+	width: 100%;
 	word-break: break-all;
-	overflow: hidden;
+	overflow-x: hidden;
+	resize: none;
+}
+
+.popup-showItem_simItem {
+	margin: 10px 0;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+
+.popup-showItem_simItem > h3 {
+	font-size: 1.3rem;
+}
+
+.popup-showImg {
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	left: 0;
+	top: 0;
+	background: #000000;
+	visibility: visible;
+	opacity: 1;
+	transition: all .5s;
+}
+
+.popup-showImgImage {
+	max-height: 90%;
+}
+
+.hidden {
+	opacity: 0;
+	visibility: hidden;
+	background: none;
+	transition: all .5s;
 }
