@@ -20,6 +20,11 @@ textarea {
   height: 25%;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 /*Header*/
 
 #main-header {
@@ -30,7 +35,6 @@ textarea {
 /*Navigation*/
 
 #main-navigation {
-  cursor: pointer;
   width: 80%;
   height: 10%; 
   margin: 0 auto;
@@ -53,6 +57,7 @@ textarea {
 }
 
 #main-navigation > ul > li > a:hover {
+  cursor: pointer;
   color: yellow;
 }
 
@@ -116,7 +121,7 @@ article {
   display: flex;
   height: 80%;
   width: 100%;;
-  background-color: lightgrey;
+  background-color: rgb(238, 238, 238);
 }
 
 .product-image-registration {
@@ -126,14 +131,15 @@ article {
 .product-image-registration a > img {
   display: block;
   float: left;
-  padding: 15%;
-  padding-bottom: 4%;
+  padding: 15% 0 10% 15%;
+  margin: 0;
   width: 220px;
   height: 220px;;
 }
 
 .product-image-registration > input {
-  border: 1px solid rgb(165, 165, 165);
+  background-color: rgb(228, 228, 228);
+  border: 1px solid rgb(207, 207, 207);
   margin-left: 15%;
   border-radius: 3px;
   width: 212px;
@@ -146,7 +152,13 @@ article {
 }
 
 .product-explanation > * {
-  margin-top: 5%;
+  margin: 3%;
+  margin-left: 5%;
+  width: 70%;
+}
+
+.product-explanation input:nth-child(1) {
+  margin-top: 10%;
 }
 
 /*Footer*/
