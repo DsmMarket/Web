@@ -546,7 +546,7 @@ function changeLike(licked) {
 const popup_showItemReport = document.getElementById('popup_showItemReport');
 
 popup_showItemReport.addEventListener('click', () => {
-
+    
 })
 
 const popup_showImg = document.getElementById('popup_showImg');
@@ -563,11 +563,13 @@ popup_showImg.addEventListener('click', () => {
     popup_showImg.classList.add('hidden');
 })
 
-
-
-
 const aside_chatting = document.getElementById('aside_chatting');
 
 document.getElementById('aside_chatting_show').addEventListener('click', () => {
     aside_chatting.classList.toggle('goRight');
 })
+
+document.getElementById('popup_showItemChatting').addEventListener('click', () => {
+    popup_showItem.classList.add('hidden');
+    aside_chatting.classList.remove('goRight');
+});
