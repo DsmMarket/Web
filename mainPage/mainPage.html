@@ -186,7 +186,7 @@
                 </section>
             </section>
         </main>
-        <aside id="aside_chatting" class="aside-chatting goRight">
+        <aside id="aside_chatting" class="aside-chatting goRight hidden">
             <div>
                 <a id="aside_chatting_show" class="aside-chatting_show"><p>Chatting</p></a>
             </div>
@@ -284,17 +284,17 @@
         <div id="popup_showImg" class="popup-showImg hidden">
             <img id="popup_showImgImage" class="popup-showImgImage" src="">
         </div>
-        <div id="popup_itemReport" class="popup-itemReport hidden">
+        <div id="popup_itemReport" class="popup-itemReport ">
             <div>
-                <h3>신고 이유를 골라주세요</h3>
-                <ul>
-                    <li class="reportReason">부적절한 게시물</li>
-                    <li class="reportReason">욕설/비속어 포함</li>
-                    <li class="reportReason">광고글</li>
-                    <li><input class="reportReason" type="text" placeholder="기타"></li>
-                </ul>
-                <div><button id="reportApply">제출하기</button></div>
+                <h3>신고 사유</h3>
+                <a id="popup_itemReport_close" class="popup-itemReport_close"></a>
             </div>
+            <ul>
+                <li class="reportReason">부적절한 게시물</li>
+                <li class="reportReason">욕설/비속어 포함</li>
+                <li class="reportReason">광고글</li>
+                <input class="reportReason reportInput" type="text" placeholder="기타 직접입력">
+            </ul>
         </div>
     </div>
     <script src="./js/mainPage.js"></script>

@@ -544,10 +544,13 @@ function changeLike(licked) {
 }
 
 const popup_showItemReport = document.getElementById('popup_showItemReport');
+const popup_itemReport = document.getElementById('popup_itemReport');
 
 popup_showItemReport.addEventListener('click', () => {
-    
+    popup_itemReport.classList.remove('hidden');
 })
+
+
 
 const popup_showImg = document.getElementById('popup_showImg');
 const popup_showImgImage = document.getElementById('popup_showImgImage');

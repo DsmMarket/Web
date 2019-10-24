@@ -1440,6 +1440,93 @@ body {
 	max-height: 90%;
 }
 
+.popup-itemReport {
+	z-index: 1000;
+	border: 2px solid black;
+	position: fixed;
+	width: 220px;
+	height: 260px;
+	left: calc(50vw - 110px - 2px);
+	top: calc(50vh - 130px - 2px);
+	visibility: visible;
+	opacity: 1;
+	transition: all .5s;
+	background: #FFFFFF;
+}
+
+.popup-itemReport > div:nth-child(1) {
+	border-bottom: 1px solid black;
+	padding: 5px 10px 5px 5px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: calc(100% - 16px);
+	height: calc(25% - 10px);
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.popup-itemReport_close {
+	width: 20px;
+	height: 20px;
+	background-image: url('../src/close.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.popup-itemReport > ul {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	width: 100%;
+	height: 75%;
+}
+
+.popup-itemReport > ul > li {
+	border: 1px solid black;
+	padding-left: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: calc(95% - 10px);
+	height: 20%;
+	background-color: #FFFFFF;
+	font-size: 1.3rem;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.popup-itemReport > ul > li:hover {
+	border: 0;
+	width: calc(95% - 10px + 2px);
+	height: calc(20% + 2px);
+	background-color: #C4C4C4;
+}
+
+.reportInput {
+	border: 1px solid black;
+	padding-left: 10px;
+	width: calc(95% - 10px);
+	height: 20%;
+	background-color: #FFFFFF;
+	font-size: 1.2rem;
+	outline: 0;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.reportInput::placeholder {
+	color: #000000;
+	font-size: 1.2rem;
+}
+
+.reportInput:hover, .reportInput:focus {
+	background-color: #C4C4C4;
+}
+
 .hidden {
 	opacity: 0;
 	visibility: hidden;
