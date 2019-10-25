@@ -282,6 +282,7 @@ details summary::-webkit-details-marker {
     background: #fff;
     box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
   }
+
   .paper:hover {
     float: left;
     width: 80px;
@@ -292,6 +293,7 @@ details summary::-webkit-details-marker {
     outline: -webkit-focus-ring-color auto 1px;
     box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
   }
+  
   .paper-content {
     margin: 0px -6%;
     margin-top: 0%;
