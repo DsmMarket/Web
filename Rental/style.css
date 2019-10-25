@@ -97,7 +97,7 @@ input[type="number"]::-webkit-inner-spin-button {
 /*article*/
 
 article {
-  height: 100%;
+  height: 80%;
   width: 100%;
 }
 
@@ -152,18 +152,46 @@ article {
 }
 
 .product-explanation > * {
-  margin: 3%;
+  margin: 0 3% 3% 3%;
   margin-left: 5%;
   width: 70%;
 }
 
-.product-explanation input:nth-child(1) {
+.product-explanation p {
+  color: grey;
+  font-size: 11px;
+  margin-bottom: 3px;
+}
+
+.product-explanation > input:nth-last-child(2), input:nth-last-child(3) {
+  margin-right: 0;
+  width: 31.6%;
+}
+
+.product-explanation p:nth-child(1) {
   margin-top: 10%;
+}
+.product-explanation button{
+  margin-top: 5%;
+  width: 71%;
 }
 
 /*Footer*/
 
 #main-footer {
+  background: #000;
+  color: #fff;
   width: 100%;
   height: 15%;
+}
+
+#main-footer h3 {
+  display: inline-block;
+  margin: 8px 25px 0 35%;
+}
+
+#main-footer a {
+  text-decoration: none;
+  margin-right: 10px;
+  color: #a9acb9;
 }
