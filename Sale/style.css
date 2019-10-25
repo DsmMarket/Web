@@ -6,6 +6,10 @@
   font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic", Gothic, sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 li {
   list-style: none;
 }
@@ -62,7 +66,6 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 #main-navigation > ul > li > a {
-  text-decoration: none;
   display: block;
   color: white;
   width: 100%;
@@ -85,7 +88,6 @@ input[type="number"]::-webkit-inner-spin-button {
 .aside-list ul > li > a {
   text-align: center;
   color: black;
-  text-decoration: none;
 }
 
 #main-section {
@@ -97,7 +99,7 @@ input[type="number"]::-webkit-inner-spin-button {
 /*article*/
 
 article {
-  height: 100%;
+  height: 80%;
   width: 100%;
 }
 
@@ -128,7 +130,7 @@ article {
   width: 40%;
 }
 
-.product-image-registration a > img {
+.product-image-registration img {
   display: block;
   float: left;
   padding: 15% 0 10% 15%;
@@ -152,18 +154,40 @@ article {
 }
 
 .product-explanation > * {
-  margin: 3%;
+  margin: 0 3% 3% 3%;
   margin-left: 5%;
   width: 70%;
 }
 
-.product-explanation input:nth-child(1) {
+.product-explanation p {
+  color: grey;
+  font-size: 11px;
+  margin-bottom: 3px;
+}
+
+.product-explanation p:nth-child(1) {
   margin-top: 10%;
 }
 
+.product-explanation button{
+  margin-top: 5%;
+}
 /*Footer*/
 
 #main-footer {
+  background: #000;
+  color: #fff;
   width: 100%;
   height: 15%;
+}
+
+#main-footer h3 {
+  display: inline-block;
+  margin: 8px 25px 0 35%;
+}
+
+#main-footer a {
+  text-decoration: none;
+  margin-right: 10px;
+  color: #a9acb9;
 }
