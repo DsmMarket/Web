@@ -18,10 +18,14 @@ li {
   list-style: none;
 }
 
-html,body {
+html, body {
   background-color: #fff;
   width: 100%;
   height: 100%;
+}
+
+details summary::-webkit-details-marker {
+  display: none; 
 }
 
 /*Header*/
@@ -78,38 +82,44 @@ html,body {
 
 #main-aside {
   float: left;
-  margin-left: 3%;
-  width: 10%;
+  margin-left: 1.8%;
+  width: 11%;
   height: 100%;
 }
 
-#main-aside > .aside-list {
+.aside-list {
   background-color: whitesmoke;
-  text-align: center;
+  margin-left: 1.2%;
   margin-top: 15%;
   width: 85%;
-  height: 65%;
+  height: 75%;
 }
 
-.aside-list li a {
-  display: block;
-  margin-left: 7%;
-  padding: 7%;
-  font-size: 13px;
-  text-align: left;
-  font-weight: 600;
-  color: #000;
-}
-
-.aside-list li a:hover {
-  background-color: gray;
-}
 
 .aside-list > h3 {
   display: block;
+  text-align: center;
   margin-bottom: 20%;
   padding-top: 10%;
   font-size: 1rem;
+}
+
+.item-holder {
+  margin-left: 10px;
+}
+
+.category-item {
+  margin-bottom: 5px;
+}
+
+.category-item li{
+  margin-left: 10px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.category-main-item {
+  outline: none;
 }
 
 /*Section*/
@@ -139,7 +149,6 @@ html,body {
 }
 
 .paper:hover {
-  cursor: pointer;
   float: left;
   width: 10%;
   margin: 1%;
@@ -165,6 +174,10 @@ html,body {
   text-overflow: ellipsis;
 }
 
+#category {
+  color: black;
+}
+
 .paper-link {
   display: block;
   float: left;
@@ -183,7 +196,7 @@ html,body {
   text-overflow: ellipsis;
 }
 
-.paper-holder > a > img {
+.paper-holder img {
   width: 100%;
   height: 100px;
 }
@@ -215,9 +228,75 @@ html,body {
   background-color: #ddd;
 }
 
+/*Product-History*/
+
+#product-history {
+  float: left;
+  width: 11%;
+  height: 45rem;
+}
+
+.product-history-list {
+  background-color: darkseagreen;
+  margin-top: 15%;
+  width: 100%;
+  height: 75%;
+}
+
+.history-item {
+  float: left;
+  width: 80%;
+  height: 25%;
+  margin: 10%;
+  background-color: #fff;
+}
+
 /*Footer*/
 
 #main-footer {
+  background: #000;
+  color: #fff;
+  margin-top: 100px;
   width: 100%;
   height: 15%;
+}
+
+#main-footer h3 {
+  display: inline-block;
+  margin: 8px 25px 0 35%;
+}
+
+#main-footer a {
+  text-decoration: none;
+  margin-right: 10px;
+  color: #a9acb9;
+}
+
+@media(max-width: 720px){
+  .paper {
+    float: left;
+    width: 80px;
+    margin: 1%;
+    padding: 1% 1% 0;
+    font-size: 11px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+  }
+  .paper:hover {
+    float: left;
+    width: 80px;
+    margin: 1%;
+    padding: 1% 1% 0;
+    font-size: 11px;
+    background: #fff;
+    outline: -webkit-focus-ring-color auto 1px;
+    box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+  }
+  .paper-content {
+    margin: 0px -6%;
+    margin-top: 0%;
+    padding: 6% 7%;
+    background: #f2f0f0;
+    overflow: hidden;
+  }
 }
