@@ -64,7 +64,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: centerflex-start;
+	justify-content: center;
 	width: 100vw;
 	min-width: 1100px;
 	height: auto;
@@ -74,10 +74,9 @@ body {
 	margin-top: 40px;
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
-	justify-content: center;
-	width: 85%;
-	min-width: 1100px;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
 	height: auto;
 }
 
@@ -85,8 +84,9 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	width: 100%;
+	width: 85%;
 	height: 155px;
+	min-width: 1100px;
 }
 
 .mainPage_header_top {
@@ -389,8 +389,9 @@ body {
 
 .mainPage_contents {
 	padding-top: 30px;
-	width: 100%;
+	width: 85%;
 	height: auto;
+	min-width: 1100px;
 	background-color: #FFFFFF22;
 }
 
@@ -941,49 +942,52 @@ body {
 	font-size: 1.2rem;
 }
 
+.chatting-openB {
+	z-index: 1001;
+	border-radius: 10px 10px 0 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	bottom: 0;
+	right: 25px;
+	width: 200px;
+	height: 50px;
+	background-color: #c0d9e5;
+	font-size: 1.2rem;
+	cursor: pointer;
+	transition: bottom 0.3s ease-in-out;
+}
+
+.chattingOpened .chatting-openB {
+	bottom: -50px;
+}
+
 .aside-chatting {
 	z-index: 20;
-	border-radius: 10px 0 0 10px;
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
 	justify-content: flex-start;
 	position: fixed;
 	top: 0;
-	right: 0;
-	width: 675px;
+	right: -600px;
+	width: 600px;
 	height: 100vh;
-	transition: right 0.5s ease-in-out;
+	transition: right 0.3s ease-in-out;
 	overflow: hidden;
 }
 
-.aside-chatting > div:nth-child(1) {
-	width: 75px;
-	height: 100%;
-	background-color: #3f72af;
+.chattingOpened .aside-chatting {
+	right: 0px;
 }
 
-.aside-chatting_show {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: 100%;
-	cursor: pointer;
-}
-.aside-chatting_show > p {
-	width: 10px;
-	font-size: 1.3rem;
-	text-align: center;
-	word-wrap: break-word;
-}
-
-.aside-chatting > div:nth-child(2) {
+.aside-chatting > div {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
-	width: 600px;
+	width: 100%;
 	height: 100%;
 	background-color: #f9f7f7;
 }
@@ -999,8 +1003,28 @@ body {
 }
 
 .aside-cRoom_chatInfo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
 	height: 65%;
+}
+
+.aside-cRoom_chatTitle {
+	font-size: 2.5rem;
+}
+
+.aside-cRoom_chatClose {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 25px;
+	height: 25px;
+	background-image: url('../src/close.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
 }
 
 .aside-cRoom_itemInfo {
@@ -1128,11 +1152,6 @@ body {
 	background-position: center;
 	background-repeat: no-repeat;
 	cursor: pointer;
-}
-
-
-.goRight {
-	right: -600px;
 }
 
 .mainPage_footer {
@@ -1446,8 +1465,8 @@ body {
 	position: fixed;
 	width: 220px;
 	height: 260px;
-	left: calc(50vw - 110px - 2px);
-	top: calc(50vh - 130px - 2px);
+	/* left: calc(50vw - 110px - 2px);
+	top: calc(50vh - 130px - 2px); */
 	visibility: visible;
 	opacity: 1;
 	transition: all .5s;
@@ -1485,7 +1504,7 @@ body {
 	height: 75%;
 }
 
-.popup-itemReport > ul > li {
+.reportReason, .reportReasonSelf {
 	border: 1px solid black;
 	padding-left: 10px;
 	display: flex;
@@ -1499,19 +1518,26 @@ body {
 	overflow: hidden;
 }
 
-.popup-itemReport > ul > li:hover {
+.reportReason:hover {
 	border: 0;
 	width: calc(95% - 10px + 2px);
 	height: calc(20% + 2px);
 	background-color: #C4C4C4;
 }
 
+.reportReasonSelf {
+	padding: 0;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: calc(95% - 2px);
+}
+
 .reportInput {
-	border: 1px solid black;
+	border: 0;
 	padding-left: 10px;
-	width: calc(95% - 10px);
-	height: 20%;
-	background-color: #FFFFFF;
+	width: calc(85% - 10px);
+	height: 100%;
 	font-size: 1.2rem;
 	outline: 0;
 	cursor: pointer;
@@ -1525,6 +1551,17 @@ body {
 
 .reportInput:hover, .reportInput:focus {
 	background-color: #C4C4C4;
+}
+
+.report_post {
+	border: 0;
+	width: 20%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.report_post:hover {
+	background-color: #4CAF50;
 }
 
 .hidden {

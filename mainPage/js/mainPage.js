@@ -95,8 +95,9 @@ function logout() {
     window.location.reload(true);
 }
 
+const mainPage = document.querySelector('.mainPage');
+
 function setBackground() {
-    const mainPage = document.querySelector('.mainPage');
     const timeN = new Date();
 
     if(timeN.getHours() <= 6 || timeN.getHours() >= 19) {
@@ -272,10 +273,12 @@ const popup_showItemClose = document.getElementById('popup_showItemClose');
 
 popup_showItemClose.addEventListener('click', () => {
     popup_showItem.classList.add("hidden");
+    popup_itemReport.classList.add('hidden');
 })
 
 popup_showItem.addEventListener('click', () => {
     popup_showItem.classList.add("hidden");
+    popup_itemReport.classList.add('hidden');
 })
 
 document.getElementById("popup_showItemBox").addEventListener('click', () => {
@@ -545,11 +548,61 @@ function changeLike(licked) {
 
 const popup_showItemReport = document.getElementById('popup_showItemReport');
 const popup_itemReport = document.getElementById('popup_itemReport');
+const popup_itemReport_close = document.getElementById('popup_itemReport_close');
+const reportReason = document.querySelectorAll('.reportReason');
+const reportSelf = document.getElementById('reportSelf');
 
-popup_showItemReport.addEventListener('click', () => {
+popup_showItemReport.addEventListener('click', (e) => {
     popup_itemReport.classList.remove('hidden');
+    popup_itemReport.style.left = `${(e.clientX - 200)}px`;
+    popup_itemReport.style.top = `${(e.clientY - 35)}px`;
 })
 
+popup_itemReport_close.addEventListener('click', () => {
+    popup_itemReport.classList.add('hidden');
+    reportSelf.value = "";
+})
+
+reportReason.forEach((v) => {
+    v.addEventListener('click', () => {
+        reportPost(v.innerText);
+    })
+})
+
+document.getElementById('reportPost').addEventListener('click', () => {
+    if(reportSelf.value !== "") {
+        reportPost(reportSelf.value);
+    } else {
+        alert('신고 사유가 비어있습니다.');
+    }
+})
+
+function reportPost(reason) {
+    popup_itemReport.classList.add('hidden');
+    axios.post(`https://dsm-market.ga/report/post`, {
+        "postId": itemData.postId,
+        "type": itemData.type,
+        "reason": reason,
+    }, {
+        headers: {
+            "Authorization": localStorage.getItem("accessToken"),
+        }, 
+    })
+    .then((response) => {
+        if(response.status === 200) {
+            console.log('13(report success)');
+            alert('신고접수가 완료되셨습니다.');
+        } else {
+            console.log(`Error: status code[${response.status}]`);
+
+        }
+    })
+    .catch((reject) => {
+        console.log("신고접수를 실패하셨습니다." + reject + " and " + reject.response);
+
+    })
+    reportSelf.value = "";
+}
 
 
 const popup_showImg = document.getElementById('popup_showImg');
@@ -568,11 +621,17 @@ popup_showImg.addEventListener('click', () => {
 
 const aside_chatting = document.getElementById('aside_chatting');
 
-document.getElementById('aside_chatting_show').addEventListener('click', () => {
-    aside_chatting.classList.toggle('goRight');
+document.getElementById('popup_showItemChatting').addEventListener('click', () => {
+    console.log('clicked')
+    popup_showItem.classList.add('hidden');
+    mainPage.classList.add('chattingOpened');
 })
 
-document.getElementById('popup_showItemChatting').addEventListener('click', () => {
-    popup_showItem.classList.add('hidden');
-    aside_chatting.classList.remove('goRight');
-});
+document.getElementById('chatting_openB').addEventListener('click', () => {
+    mainPage.classList.add('chattingOpened');
+})
+
+document.getElementById('aside_cRoom_chatClose').addEventListener('click', () => {
+    mainPage.classList.remove('chattingOpened');
+})
+

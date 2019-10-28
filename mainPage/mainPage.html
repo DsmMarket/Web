@@ -186,13 +186,14 @@
                 </section>
             </section>
         </main>
-        <aside id="aside_chatting" class="aside-chatting goRight hidden">
-            <div>
-                <a id="aside_chatting_show" class="aside-chatting_show"><p>Chatting</p></a>
-            </div>
+        <a id="chatting_openB" class="chatting-openB">Chatting Room</a>
+        <aside id="aside_chatting" class="aside-chatting goRight">
             <div>
                 <div class="aside-cRoom_header">
-                    <div class="aside-cRoom_chatInfo"></div>
+                    <div class="aside-cRoom_chatInfo">
+                        <div class="aside-cRoom_chatTitle">ERR</div>
+                        <a id="aside_cRoom_chatClose" class="aside-cRoom_chatClose"></a>
+                    </div>
                     <div id="aside_chattingRoom_itemInfo" class="aside-cRoom_itemInfo">
                         <div>
                             <div>
@@ -253,7 +254,7 @@
                             <h4><p>가격: </p><p id="popup_showItemPrice">ERR</p></h4>
                         </li>
                         <li class="popup-showItem_chat">
-                            <button id="popup_showItemChatting">체팅하러가기</button>
+                            <button id="popup_showItemChatting">채팅하러가기</button>
                         </li>
                         <li class="popup-showItem_comments">
                             <div>
@@ -284,7 +285,7 @@
         <div id="popup_showImg" class="popup-showImg hidden">
             <img id="popup_showImgImage" class="popup-showImgImage" src="">
         </div>
-        <div id="popup_itemReport" class="popup-itemReport ">
+        <div id="popup_itemReport" class="popup-itemReport hidden">
             <div>
                 <h3>신고 사유</h3>
                 <a id="popup_itemReport_close" class="popup-itemReport_close"></a>
@@ -293,7 +294,10 @@
                 <li class="reportReason">부적절한 게시물</li>
                 <li class="reportReason">욕설/비속어 포함</li>
                 <li class="reportReason">광고글</li>
-                <input class="reportReason reportInput" type="text" placeholder="기타 직접입력">
+                <div class="reportReasonSelf">
+                    <input id="reportSelf" class="reportInput" type="text" placeholder="기타 직접입력">
+                    <button id="reportPost" class="report_post">제출</button>
+                </div>
             </ul>
         </div>
     </div>
