@@ -50,7 +50,7 @@ details summary::-webkit-details-marker {
   background-color: #34343c;
 }
 
-#main-navigation > ul > li {
+#main-navigation li {
   margin: 0;
   padding: 0;
   width: 20%;
@@ -58,17 +58,17 @@ details summary::-webkit-details-marker {
   font-size: 15px;
 }
 
-#main-navigation > ul > li > a:hover {
-  cursor: pointer;
-  color: yellow;
-}
-
-#main-navigation > ul > li > a {
+#main-navigation a {
   text-decoration: none;
   display: block;
   color: white;
   width: 100%;
   height: 100%;
+}
+
+#main-navigation a:hover {
+  cursor: pointer;
+  color: yellow;
 }
 
 /*Content*/
@@ -88,7 +88,7 @@ details summary::-webkit-details-marker {
 }
 
 .aside-list {
-  background-color: whitesmoke;
+  background-color: #A8FF93;
   margin-left: 1.2%;
   margin-top: 15%;
   width: 85%;
@@ -112,13 +112,15 @@ details summary::-webkit-details-marker {
   margin-bottom: 5px;
 }
 
-.category-item li{
+.category-item li {
   margin-left: 10px;
   font-size: 13px;
   font-weight: bold;
 }
 
 .category-main-item {
+  cursor: pointer;
+  display: inline;
   outline: none;
 }
 
@@ -135,7 +137,7 @@ details summary::-webkit-details-marker {
 .view-item {
   float: left;
   width: 100%;
-  height: 80%;
+  height: 90%;
 }
 
 .paper {
@@ -178,16 +180,6 @@ details summary::-webkit-details-marker {
   color: black;
 }
 
-.paper-link {
-  display: block;
-  float: left;
-}
-
-.paper-link > img {
-  width: 50px;
-  height: 50px;
-}
-
 .paper-text {
   float: left;
   width: 100%;
@@ -201,54 +193,46 @@ details summary::-webkit-details-marker {
   height: 100px;
 }
 
-#pagination {
-  float: left;
-  width: 100%;
-  height: 20%;
-}
-
-#pagination li {
-  display: inline-block;
-}
-
-#pagination ul {
-  margin-top: 10%;
-  text-align: center;
-}
-
-#pagination a {
-  color: black;
-  padding: 8px 16px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color .5s;
-}
-
-#pagination a:hover {
-  background-color: #ddd;
-}
-
 /*Product-History*/
 
 #product-history {
+  /*position: fixed;*/
   float: left;
   width: 11%;
-  height: 45rem;
+  height: 100%;
 }
 
 .product-history-list {
-  background-color: darkseagreen;
+  background-color: #A8FF93;
   margin-top: 15%;
   width: 100%;
   height: 75%;
 }
 
+.product-history-list * {
+  text-align: center;
+}
+
 .history-item {
   float: left;
-  width: 80%;
-  height: 25%;
-  margin: 10%;
+  width: 90%;
+  height: 15%;
+  margin: 5%;
   background-color: #fff;
+}
+
+.product-history-list a {
+  font-weight: bolder;
+  font-size: 13px;
+  color: #000;
+}
+
+.product-history-list a:hover {
+  color: red;
+}
+
+.product-history-list a:active {
+  color: blue;
 }
 
 /*Footer*/
@@ -256,7 +240,7 @@ details summary::-webkit-details-marker {
 #main-footer {
   background: #000;
   color: #fff;
-  margin-top: 100px;
+  margin-top: 60px;
   width: 100%;
   height: 15%;
 }
@@ -272,33 +256,60 @@ details summary::-webkit-details-marker {
   color: #a9acb9;
 }
 
-@media(max-width: 720px){
+#main-footer h3:nth-child(1), #main-footer a:nth-child(1) {
+  margin-top: 20px;
+}
+
+@media(max-width: 1200px) {
+  #content {
+    width: 100%;
+    height: 180%;
+  }
+  #main-aside {
+    float: left;
+    margin-left: 1.8%;
+    width: 17%;
+    height: 100%;
+  }
+  .view-item {
+    float: left;
+    width: 100%;
+    height: 100%;
+  }
+  #main-section {
+    float: left;
+    width: 60%;
+    height: 100%;
+  }
   .paper {
     float: left;
-    width: 80px;
-    margin: 1%;
+    width: 25%;
+    margin: 2% 3% 2% 2%;
     padding: 1% 1% 0;
     font-size: 11px;
     background: #fff;
     box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
   }
-
   .paper:hover {
     float: left;
-    width: 80px;
-    margin: 1%;
+    width: 25%;
+    margin: 2% 3% 2% 2%;
     padding: 1% 1% 0;
     font-size: 11px;
     background: #fff;
     outline: -webkit-focus-ring-color auto 1px;
     box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
   }
-  
   .paper-content {
-    margin: 0px -6%;
+    margin: 0px -4%;
     margin-top: 0%;
     padding: 6% 7%;
     background: #f2f0f0;
     overflow: hidden;
+  }
+  #product-history {
+    float: left;
+    width: 17%;
+    height: 100%;
   }
 }
