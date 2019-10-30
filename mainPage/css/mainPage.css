@@ -1439,6 +1439,55 @@ body {
 	font-size: 1.3rem;
 }
 
+.popup-showItem_simItem > div {
+	padding-top: 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: auto;
+}
+
+.popup-shoItem_related {
+	border: 1px solid black;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	width: 130px;
+	height: 120px;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.popup-shoItem_related_image {
+	border-bottom: 1px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: calc(100px);
+	overflow: hidden;
+}
+
+.popup-shoItem_related_image > img {
+	height: 100px;
+}
+
+.popup-shoItem_related_text {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 20px;
+}
+
+.popup-shoItem_related_title {
+	font-size: 1rem;
+}
+
 .popup-showImg {
 	z-index: 1000;
 	display: flex;

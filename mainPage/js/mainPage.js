@@ -329,6 +329,8 @@ const popup_shoItemPossible_time = document.getElementById('popup_shoItemPossibl
 
 const popup_showItemLike = document.getElementById('popup_showItemLike');
 
+const popup_posibleTime = document.getElementById('popup_posibleTime');
+
 let itemData = {
     responseData: [],
     type: 0,
@@ -343,13 +345,15 @@ function fillItemModal(data, type, postId) {
         popup_showItemImgs.removeChild(popup_showItemImgs.firstChild);
     }
     
+    
     if(type == 1) {
         console.log(data.possible_time)
         if(data.possible_time != "") {
-            popup_shoItemPossible_time.parentElement
+            popup_shoItemPossible_time.parentElement;
             popup_shoItemPossible_time.innerText = data.possible_time;
+            popup_posibleTime.setAttribute('style', '');
         } else {
-            popup_shoItemPossible_time.innerText = "";
+            popup_posibleTime.setAttribute('style', 'height: 0;overflow: hidden;');
         }
         let imgBox = document.createElement('li');
         let img = document.createElement('img');
@@ -372,6 +376,7 @@ function fillItemModal(data, type, postId) {
             popup_showItemImgs.appendChild(imgBox);
         });
         popup_showItemImg.setAttribute('src', data.img[0]);
+        popup_posibleTime.setAttribute('style', 'height: 0;overflow: hidden;');
     }
 
     popup_showItemTitle.innerText = data.title;
@@ -388,6 +393,7 @@ function fillItemModal(data, type, postId) {
         popup_showItemLike.classList.remove('popup-showItem_filledLike');
     }
     getComments();
+    getRelated();
 }
 
 function getComments() {
@@ -481,6 +487,52 @@ function addComment(content) {
     .catch((reject) => {
         console.log("댓글등록에 실패하셨습니다." + reject + " and " + reject.response);
 
+    })
+}
+
+function getRelated() {
+    axios.get(`https://dsm-market.ga/list/related`, {
+        params: {
+            "postId": itemData.postId,
+            "type": itemData.type,
+        },
+        headers: {
+            "Authorization" : localStorage.getItem("accessToken"),
+        }
+    })
+    .then((response) => {
+        if(response.status === 200) {
+            console.log('message : 9(refer success)');
+            fillRelated(response.data.list);
+
+        } else {
+            console.log(`Error: status code[${response.status}]`);
+
+        }
+    })
+    .catch((reject) => {
+        console.log("관련상품 조회에 실패하셨습니다." + reject + " and " + reject.response);
+    })
+}
+
+const popup_shoItemRelated = document.getElementById('popup_shoItemRelated');
+
+function fillRelated(data) {
+    popup_shoItemRelated.innerHTML = "";
+    data.forEach((v, i) => {
+        if(i == 3){break;}
+        let popup_shoItem_related = document.createElement('div');
+        popup_shoItem_related.setAttribute('class', 'popup-shoItem_related');
+        popup_shoItem_related.addEventListener('click', () => {
+            itemClicked(v.postId, v.type);
+        })
+        popup_shoItem_related.innerHTML += `
+            <div class="popup-shoItem_related_image"><img src="https://www.americanairlines.co.uk/content/images/homepage/mobile-hero/en_US/Tail.png"></div>
+            <div class="popup-shoItem_related_text">
+                <h3 class="popup-shoItem_related_title">제목</h3>
+            </div>
+        `
+        popup_shoItemRelated.appendChild(popup_shoItem_related);
     })
 }
 
