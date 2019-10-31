@@ -26,9 +26,12 @@ function isUserLogin() {
         }
     })
     .catch((reject) => {
-        console.log("로그인에 실패하셨습니다." + reject + " and " + reject.response);
+        console.log("로그인에 실패하셨습니다." + reject + " and " + Promise.reject(reject.response));
+        if(reject.response.status === 401) {
+            reissuanceToken();
+        }
         changeLoginOut(1);
-        reissuanceToken();
+        
     })
 }
 
@@ -51,8 +54,12 @@ function getNickName() {
         }
     })
     .catch((reject) => {
-        console.log("닉네임 얻기에 실패하셨습니다." + reject + " and " + reject.response);
-        changeLoginOut('Null');
+        console.log("닉네임 얻기에 실패하셨습니다." + reject + " and " + Promise.reject(reject.response));
+        if(reject.response.status === 401) {
+            reissuanceToken();
+        } else {
+            changeLoginOut('Null');
+        }
     })
 }
 
@@ -85,8 +92,10 @@ function reissuanceToken() {
         }
     })
     .catch((reject) => {
-        console.log("access토큰 재발급에 실패하셧습니다." + reject + " and " + reject.response);
-
+        console.log("access토큰 재발급에 실패하셧습니다." + reject + " and " + Promise.reject(reject.response));
+        if(reject.response.status === 401) {
+            alert('토큰이 만료되었습니다. 다시 로그인해주세요.');
+        }
     })
 }
 
@@ -194,7 +203,10 @@ function getDealList() {
         }
     })
     .catch((reject) => {
-        console.log("상품 조회에 실패하셨습니다." + reject + " and " + reject.response);
+        console.log("상품 조회에 실패하셨습니다." + reject + " and " + Promise.reject(reject.response));
+        if(reject.response.status === 401) {
+            reissuanceToken();
+        }
 
     })
 }
@@ -223,7 +235,10 @@ function getRentList() {
         }
     })
     .catch((reject) => {
-        console.log("대여 조회에 실패하셨습니다." + reject + " and " + reject.response);
+        console.log("대여 조회에 실패하셨습니다." + reject + " and " + Promise.reject(reject.response));
+        if(reject.response.status === 401) {
+            reissuanceToken();
+        }
 
     })
 }
@@ -311,7 +326,10 @@ function itemClicked(postId, type) {
         }
     })
     .catch((reject) => {
-        console.log("개별 상품 조회에 실패하셨습니다." + reject + " and " + reject.response);
+        console.log("개별 상품 조회에 실패하셨습니다." + reject + " and " + Promise.reject(reject.response));
+        if(reject.response.status === 401) {
+            reissuanceToken();
+        }
 
     })
 }
@@ -418,7 +436,11 @@ function getComments() {
         }
     })
     .catch((reject) => {
-        console.log("댓글조회에 실패하셨습니다." + reject + " and " + reject.response);
+        console.log("댓글조회에 실패하셨습니다." + reject + " and " + Promise.reject(reject.response));
+        if(reject.response.status === 401) {
+            reissuanceToken();
+        }
+
     })
 }
 
@@ -485,7 +507,10 @@ function addComment(content) {
         }
     })
     .catch((reject) => {
-        console.log("댓글등록에 실패하셨습니다." + reject + " and " + reject.response);
+        console.log("댓글등록에 실패하셨습니다." + reject + " and " + Promise.reject(reject.response));
+        if(reject.response.status === 401) {
+            reissuanceToken();
+        }
 
     })
 }
@@ -511,29 +536,41 @@ function getRelated() {
         }
     })
     .catch((reject) => {
-        console.log("관련상품 조회에 실패하셨습니다." + reject + " and " + reject.response);
+        console.log("관련상품 조회에 실패하셨습니다." + reject + " and " + Promise.reject(reject.response));
+        if(reject.response.status === 401) {
+            reissuanceToken();
+        }
+
     })
 }
 
-const popup_shoItemRelated = document.getElementById('popup_shoItemRelated');
+const popup_showItemRelated = document.getElementById('popup_showItemRelated');
 
 function fillRelated(data) {
-    popup_shoItemRelated.innerHTML = "";
-    data.forEach((v, i) => {
-        if(i == 3){break;}
-        let popup_shoItem_related = document.createElement('div');
-        popup_shoItem_related.setAttribute('class', 'popup-shoItem_related');
-        popup_shoItem_related.addEventListener('click', () => {
-            itemClicked(v.postId, v.type);
+    popup_showItemRelated.innerHTML = ``;
+    if(data.length > 0) {
+        data.some((v, i) => {
+            if(i === 3){return null}
+            let popup_shoItem_related = document.createElement('div');
+            popup_shoItem_related.setAttribute('class', 'popup-shoItem_related');
+            popup_shoItem_related.addEventListener('click', () => {
+                itemClicked(v.postId, v.type);
+            })
+            popup_shoItem_related.innerHTML += `
+                <div class="popup-shoItem_related_image"><img src="${v.img}"></div>
+                <div class="popup-shoItem_related_text">
+                    <h3 class="popup-shoItem_related_title">${v.title}</h3>
+                </div>
+            `
+            popup_showItemRelated.appendChild(popup_shoItem_related);
         })
-        popup_shoItem_related.innerHTML += `
-            <div class="popup-shoItem_related_image"><img src="https://www.americanairlines.co.uk/content/images/homepage/mobile-hero/en_US/Tail.png"></div>
-            <div class="popup-shoItem_related_text">
-                <h3 class="popup-shoItem_related_title">제목</h3>
+    } else {
+        popup_showItemRelated.innerHTML = `
+            <div class="popup_showItemRelated_null">
+                <p>관련상품이 없습니다.</p>
             </div>
-        `
-        popup_shoItemRelated.appendChild(popup_shoItem_related);
-    })
+        `;
+    }
 }
 
 function changeLike(licked) {
@@ -563,7 +600,7 @@ function changeLike(licked) {
             }
         })
         .catch((reject) => {
-            console.log("상품 관심취소에 실패하셨습니다." + reject + " and " + reject.response);
+            console.log("상품 관심취소에 실패하셨습니다." + reject + " and " + Promise.reject(reject.response));
 
         })
     } else {
@@ -592,7 +629,10 @@ function changeLike(licked) {
             }
         })
         .catch((reject) => {
-            console.log("상품 관심표시에 실패하셨습니다." + reject + " and " + reject.response);
+            console.log("상품 관심표시에 실패하셨습니다." + reject + " and " + Promise.reject(reject.response));
+            if(reject.response.status === 401) {
+                reissuanceToken();
+            }
 
         })
     }
@@ -650,7 +690,10 @@ function reportPost(reason) {
         }
     })
     .catch((reject) => {
-        console.log("신고접수를 실패하셨습니다." + reject + " and " + reject.response);
+        console.log("신고접수를 실패하셨습니다." + reject + " and " + Promise.reject(reject.response));
+        if(reject.response.status === 401) {
+            reissuanceToken();
+        }
 
     })
     reportSelf.value = "";
@@ -677,6 +720,7 @@ document.getElementById('popup_showItemChatting').addEventListener('click', () =
     console.log('clicked')
     popup_showItem.classList.add('hidden');
     mainPage.classList.add('chattingOpened');
+    makeChattingR();
 })
 
 document.getElementById('chatting_openB').addEventListener('click', () => {
@@ -686,4 +730,104 @@ document.getElementById('chatting_openB').addEventListener('click', () => {
 document.getElementById('aside_cRoom_chatClose').addEventListener('click', () => {
     mainPage.classList.remove('chattingOpened');
 })
+
+function makeChattingR() {
+    axios.post(`https://dsm-market.ga/room`, {
+        "postId": itemData.postId,
+        "type": itemData.type,
+    }, {
+        headers: {
+            "Authorization": localStorage.getItem("accessToken"),
+        },
+    })
+    .then((response) => {
+        if(response.status === 200) {
+            console.log('makeChattingRomeSuccess');
+            getChattingRList();
+
+        }
+        
+    })
+    .catch((reject) => {
+        console.log("채팅방 생성을 실패하셨습니다." + reject + " and " + Promise.reject(reject.response));
+        if(reject.response.status === 401) {
+            reissuanceToken();
+        }
+
+    })
+}
+
+function getChattingRList() {
+    axios.get(`https://dsm-market.ga/room`, {
+        params: {
+            
+        },
+        headers: {
+            "Authorization": localStorage.getItem("accessToken"),
+        }
+    })
+    .then((response) => {
+        if(response.status === 200) {
+            console.log('getChattingRoomListSuccess');
+            fillChattingRoomList(response.data.list);
+
+        }
+
+    })
+    .catch((reject) => {
+        console.log("채팅방 리스트 조회에 실패하셨습니다." + reject + " and " + Promise.reject(reject.response));
+        if(reject.response.status === 401) {
+            reissuanceToken();
+        }
+
+    })
+}
+
+const aside_chattingRoom_list = document.getElementById('aside_chattingRoom_list');
+
+function fillChattingRoomList(data) {
+    aside_chattingRoom_list.innerHTML = ``;
+    if(data.length > 0) {
+        data.forEach((v) => {
+            let popup_shoItem_related = document.createElement('li');
+            popup_shoItem_related.setAttribute('class', 'popup-shoItem_related');
+            popup_shoItem_related.addEventListener('click', () => {
+                itemClicked(v.postId, v.type);
+            })
+            popup_shoItem_related.innerHTML += `
+                <div class="popup-shoItem_related_image"><img src="${v.img}"></div>
+                <div class="popup-shoItem_related_text">
+                    <h3 class="popup-shoItem_related_title">${v.title}</h3>
+                </div>
+            `
+            popup_showItemRelated.appendChild(popup_shoItem_related);
+        })
+    } else {
+        popup_showItemRelated.innerHTML = `
+            <div class="popup_showItemRelated_null">
+                <p>관련상품이 없습니다.</p>
+            </div>
+        `;
+    }
+}
+
+const aside_cRoom_chatTitle = document.getElementById('aside_cRoom_chatTitle');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

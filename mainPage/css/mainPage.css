@@ -953,7 +953,7 @@ body {
 	right: 25px;
 	width: 200px;
 	height: 50px;
-	background-color: #c0d9e5;
+	background-color: #88540b;
 	font-size: 1.2rem;
 	cursor: pointer;
 	transition: bottom 0.3s ease-in-out;
@@ -965,13 +965,14 @@ body {
 
 .aside-chatting {
 	z-index: 20;
+	border-left: 1px solid black;
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
 	justify-content: flex-start;
 	position: fixed;
 	top: 0;
-	right: -600px;
+	right: -601px;
 	width: 600px;
 	height: 100vh;
 	transition: right 0.3s ease-in-out;
@@ -1446,7 +1447,7 @@ body {
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
-	height: auto;
+	height: 125px;
 }
 
 .popup-shoItem_related {
@@ -1462,6 +1463,16 @@ body {
 	overflow: hidden;
 }
 
+.popup_showItemRelated_null {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
 .popup-shoItem_related_image {
 	border-bottom: 1px solid black;
 	display: flex;
@@ -1469,11 +1480,12 @@ body {
 	justify-content: center;
 	width: 100%;
 	height: calc(100px);
+	background-color: #ebebeb;
 	overflow: hidden;
 }
 
 .popup-shoItem_related_image > img {
-	height: 100px;
+	width: 100px;
 }
 
 .popup-shoItem_related_text {
@@ -1485,7 +1497,14 @@ body {
 }
 
 .popup-shoItem_related_title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
 	font-size: 1rem;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
 }
 
 .popup-showImg {
