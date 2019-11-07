@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="text/css" href="./css/mainPage.css" rel="stylesheet" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>DSMARKET-mainPage</title>
+</head>
+<body>
+    <div class="mainPage">
+        <main class="mainPageContentsWrapper" role="main">
+            <header class="mainPage_header">
+                <div class="mainPage_header_top">
+                    <div class="mainPage_header_logoImg"></div>
+                    <div class="mainPage_header_search">
+                        <input id="mainPageSerch" type="text" placeholder="Search items">
+                    </div>
+                    <div id="mainPageLoginLogout" class="mainPage_header_loginLogout">
+                    </div>
+                </div>
+                <nav class="mainPage_header_menu">
+                    <ul>
+                        <li class="mainPage_header_menuContents"><div><a>Main</a></div></li>
+                        <li class="mainPage_header_menuContents"><div><a>Product</a></div></li>
+                        <li class="mainPage_header_menuContents"><div><a>Rent</a></div></li>
+                        <li id="menuContents_post" class="mainPage_header_menuContents">
+                            <div><a>Post stuff</a></div>
+                            <ul class="mainPage_header_menuContents_post">
+                                <li><a>상품</a></li>
+                                <li><a>대여</a></li>
+                            </ul>
+                        </li>
+                        <li id="menuContents_myPage" class="mainPage_header_menuContents">
+                            <div><a href="../myPage/myPage.html">MyPage</a></div>
+                            <ul class="mainPage_header_menuContents_myPage">
+                                <li><a>닉네임 변경</a></li>
+                                <li><a>비밀번호 변경</a></li>
+                            </ul>
+                        </li>
+                        <li id="menuContents_category" class="mainPage_header_menuContents">
+                            <div><a>Category</a></div>
+                            <ul class="mainPage_header_menuContents_category">
+                                <li><a>책</a></li>
+                                <li><a>운동기구</a></li>
+                                <li><a>전자제품</a></li>
+                                <li><a>식품</a></li>
+                                <li><a>생필품</a></li>
+                                <li><a href="../product-quick-view/index.html">Etc..</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <section class="mainPage_contents">
+                <section class="mainPage_contentsTop">
+                    <article>
+                        <div id="mainPage_contents_category" class="mainPage_contents_block">
+                            <div class="mainPage_contents_categorys">
+                                <h5>새로운 만남<br>안전한 거래</h5>
+                                <hr>
+                                <p>지금 당장<br>상품 보러가기</p>
+                                <a href="#">show now</a>
+                            </div>
+                        </div>
+                        <div id="mainPage_contents_book" class="mainPage_contents_block">
+                            <div class="mainPage_contents_categorys">
+                                <h5>책</h5>
+                                <div class="mainPage_contents_categorys_text"><p>Reading ismusic of mind.</p><p>Go to see now</p></div>
+                                <a href="#">show now</a>
+                            </div>
+                        </div>
+                        <div id="mainPage_contents_sporting" class="mainPage_contents_block">
+                            <div class="mainPage_contents_categorys">
+                                <h5>운동기구</h5>
+                                <div class="mainPage_contents_categorys_text"><p>SWEAT IS FAT CRYING</p><p>Go to see now</p></div>
+                                <a href="#">show now</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article>
+                        <div id="mainPage_contents_food" class="mainPage_contents_block">
+                            <div class="mainPage_contents_categorys">
+                                <h5>음식</h5>
+                                <div class="mainPage_contents_categorys_text"><p>There ain't no such thing as wrong food.</p><p>Go to see now</p></div>
+                                <a href="#">show now</a>
+                            </div>
+                        </div>
+                        <div id="mainPage_contents_appliances" class="mainPage_contents_block">
+                            <div class="mainPage_contents_categorys">
+                                <h5>전자기기</h5>
+                                <div class="mainPage_contents_categorys_text"><p>Advanced Technology Comfortable Life</p><p>Go to see now</p></div>
+                                <a href="#">show now</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article>
+                        <div id="mainPage_contents_necessaries" class="mainPage_contents_block">
+                            <div class="mainPage_contents_categorys">
+                                <h5>생필품</h5>
+                                <div class="mainPage_contents_categorys_text"><p>You can buy necessities cheaply</p><p>Go to see now</p></div>
+                                <a href="#">show now</a>
+                            </div>
+                        </div>
+                        <div id="mainPage_contents_etc" class="mainPage_contents_block">
+                            <div class="mainPage_contents_categorys">
+                                <h5>Etc..</h5>
+                                <div class="mainPage_contents_categorys_text"><p>ETC in Korean is 'guitar'.</p><p>Go to see now</p></div>
+                                <a href="#">show now</a>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+                <section class="mainPage_contentsBottom">
+                    <article class="mainPage_itemCarousel">
+                        <div class="mainPage_itemCarousel_top">
+                            <h4 class="mainPage_itemCarousel_title"><p>Product</p><p>Rent</p></h4>
+                            <div class="mainPage_itemCarousel_link"><a href="#">상품 더보러 가기</a><a href="#">대여 더보러 가기</a></div>
+                        </div>
+                        <div class="mainPage_itemCarousel_contentsWrapper">
+                            <button id="itemCarousel_back" class="mainPage_itemCarousel_contentsBack" onclick="carouselChangedLeft()"></button>
+                            <div id="mainPageItemCarouselShop" class="mainPage_itemCarousel_contentShopping">
+                                <!-- <div class="mainPage_itemCarousel_content">
+                                    <div class="mainPage_itemCarousel_content_image"></div>
+                                    <div class="mainPage_itemCarousel_content_namePrice">
+                                        <h6 class="mainPage_itemCarousel_content_name">상품이름</h6>
+                                        <p class="mainPage_itemCarousel_content_price">상품 가격</p>
+                                    </div>
+                                </div>
+                                <div class="mainPage_itemCarousel_content">
+                                    <div class="mainPage_itemCarousel_content_image"></div>
+                                    <div class="mainPage_itemCarousel_content_namePrice">
+                                        <h6 class="mainPage_itemCarousel_content_name">상품이름</h6>
+                                        <p class="mainPage_itemCarousel_content_price">상품 가격</p>
+                                    </div>
+                                </div>
+                                <div class="mainPage_itemCarousel_content">
+                                    <div class="mainPage_itemCarousel_content_image"></div>
+                                    <div class="mainPage_itemCarousel_content_namePrice">
+                                        <h6 class="mainPage_itemCarousel_content_name">상품이름</h6>
+                                        <p class="mainPage_itemCarousel_content_price">상품 가격</p>
+                                    </div>
+                                </div>
+                                <div class="mainPage_itemCarousel_content">
+                                    <div class="mainPage_itemCarousel_content_image"></div>
+                                    <div class="mainPage_itemCarousel_content_namePrice">
+                                        <h6 class="mainPage_itemCarousel_content_name">상품이름</h6>
+                                        <p class="mainPage_itemCarousel_content_price">상품 가격</p>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div id="mainPageItemCarouselRent" class="mainPage_itemCarousel_contentRent">
+                                <!-- <div class="mainPage_itemCarousel_content">
+                                    <div class="mainPage_itemCarousel_content_image"></div>
+                                    <div class="mainPage_itemCarousel_content_namePrice">
+                                        <h6 class="mainPage_itemCarousel_content_name">대여이름</h6>
+                                        <p class="mainPage_itemCarousel_content_price">대여 가격</p>
+                                    </div>
+                                </div>
+                                <div class="mainPage_itemCarousel_content">
+                                    <div class="mainPage_itemCarousel_content_image"></div>
+                                    <div class="mainPage_itemCarousel_content_namePrice">
+                                        <h6 class="mainPage_itemCarousel_content_name">대여이름</h6>
+                                        <p class="mainPage_itemCarousel_content_price">대여 가격</p>
+                                    </div>
+                                </div>
+                                <div class="mainPage_itemCarousel_content">
+                                    <div class="mainPage_itemCarousel_content_image"></div>
+                                    <div class="mainPage_itemCarousel_content_namePrice">
+                                        <h6 class="mainPage_itemCarousel_content_name">대여이름</h6>
+                                        <p class="mainPage_itemCarousel_content_price">대여 가격</p>
+                                    </div>
+                                </div>
+                                <div class="mainPage_itemCarousel_content">
+                                    <div class="mainPage_itemCarousel_content_image"></div>
+                                    <div class="mainPage_itemCarousel_content_namePrice">
+                                        <h6 class="mainPage_itemCarousel_content_name">대여이름</h6>
+                                        <p class="mainPage_itemCarousel_content_price">대여 가격</p>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <button id="itemCarousel_next" class="mainPage_itemCarousel_contentsNext" onclick="carouselChangedRight()"></button>
+                        </div>
+                    </article>
+                </section>
+            </section>
+        </main>
+        <aside id="aside_chatting" class="aside-chatting goRight">
+            <div>
+                <a id="aside_chatting_show" class="aside-chatting_show"><p>Chatting</p></a>
+            </div>
+            <div>
+                <div class="aside-cRoom_header">
+                    <div class="aside-cRoom_chatInfo"></div>
+                    <div id="aside_chattingRoom_itemInfo" class="aside-cRoom_itemInfo">
+                        <div>
+                            <div>
+                                <a id="aside_cRoom_showItemB" class="aside-cRoom_showItemB">
+                                    <div><p>상품 정보 보기</p></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="aside-cRoom_contents">
+                    <ul id="aside_chattingRoom_list" class="aside-cRoom_list"><li></li><li></li></ul>
+                    <div class="aside-cRoom_main">
+                        <div id="aside_chattingRoom_valueWrapper" class="aside-chattingRoom_valueWrapper"><div class="chat_mine"><p>Hello master branch?</p></div><div class="chat_others"><p>Who the hell you are?</p></div></div>
+                        <div class="aside-chattingRoom_postWrapper">
+                            <div><a id="aside_chattingRoom_selectPicture" class="aside-chattingRoom_selectPicture"></a></div>
+                            <div><input id="aside_chattingRoom_postInput" class="aside-chattingRoom_postInput" type="text" placeholder="텍스트를 입력해주세요"></div>
+                            <div><a id="aside_chattingRoom_chatPost" class="aside-chattingRoom_chatPost"></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <footer class="mainPage_footer">
+    
+        </footer>
+        <div id="popup_showItem" class="popup-showItem hidden">
+            <section id="popup_showItemBox" class="popup-showItem_box">
+                <article class="popup-showItem_img">
+                    <div><img id="popup_showItemImg"></div>
+                    <ul id="popup_showItemImgs"></ul>
+                </article>
+                <article class="popup-showItem_contents">
+                    <ul>
+                        <li class="popup-showItem_header">
+                            <a id="popup_showItemLike" class="popup-showItem_like"></a>
+                            <a id="popup_showItemReport"></a>
+                            <a id="popup_showItemClose"></a>
+                        </li>
+                        <li class="popup-showItem_title">
+                            <h2 id="popup_showItemTitle">ERR</h2>
+                        </li>
+                        <li class="popup-showItem_nameDate">
+                            <h4><p>작성자: </p><p id="popup_showItemAuthor">ERR</p></h4>
+                            <h4><p id="popup_showItemCreatedAt">ERR</p></h4>
+                        </li>
+                        <li>
+                            <h4><p>대여 가능시간:</p> <p id="popup_shoItemPossible_time">ERR</p></h4>
+                        </li>
+                        <li class="popup-showItem_introduce">
+                            <h3>제품설명</h3>
+                            <div id="popup_showItemContent">ERR</div>
+                        </li>
+                        <li class="popup-showItem_category">
+                            <h4><p>카테고리: </p><p id="popup_showItemCategory">ERR</p></h4>
+                        </li>
+                        <li class="popup-showItem_price">
+                            <h4><p>가격: </p><p id="popup_showItemPrice">ERR</p></h4>
+                        </li>
+                        <li class="popup-showItem_chat">
+                            <button id="popup_showItemChatting">체팅하러가기</button>
+                        </li>
+                        <li class="popup-showItem_comments">
+                            <div>
+                                <h3>댓글</h3>
+                                <a id="popup_showItemAddCommentB">+</a>
+                            </div>
+                            <div id="popup_showItemComment">
+                                <!-- <div class="popup-showItem_comment">
+                                    <div>
+                                        <p>ERR</p>
+                                        <div>
+                                            <p>ERRE_RR_ER</p>
+                                            <a></a>
+                                        </div>
+                                    </div>
+                                    <div>error</div>
+                                </div> -->
+                            </div>
+                        </li>
+                        <li class="popup-showItem_simItem">
+                            <h3>관련상품</h3>
+                            <div></div>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+        </div>
+        <div id="popup_showImg" class="popup-showImg hidden">
+            <img id="popup_showImgImage" class="popup-showImgImage" src="">
+        </div>
+        <div id="popup_itemReport" class="popup-itemReport hidden">
+            <div>
+                <h3>신고 이유를 골라주세요</h3>
+                <ul>
+                    <li class="reportReason">부적절한 게시물</li>
+                    <li class="reportReason">욕설/비속어 포함</li>
+                    <li class="reportReason">광고글</li>
+                    <li><input class="reportReason" type="text" placeholder="기타"></li>
+                </ul>
+                <div><button id="reportApply">제출하기</button></div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/mainPage.js"></script>
+</body>
+</html>
