@@ -11,6 +11,7 @@ li {
 }
 
 html, body {
+  width: 100%;
   height: 100%;
 }
 
@@ -40,15 +41,15 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0 auto;
 }
 
-#main-navigation > ul {
+#main-navigation ul {
   display: flex;
   overflow: hidden;
   text-align: center;
   background: #34343c;
 }
 
-#main-navigation > ul > li {
-  display: inline-block;
+#main-navigation li {
+  display: flex;
   margin: 0;
   padding: 0;
   width: 20%;
@@ -56,17 +57,17 @@ input[type="number"]::-webkit-inner-spin-button {
   font-size: 15px;
 }
 
-#main-navigation > ul > li > a:hover {
-  cursor: pointer;
-  color: yellow;
-}
-
-#main-navigation > ul > li > a {
+#main-navigation a {
   text-decoration: none;
   display: block;
   color: white;
   width: 100%;
   height: 100%;
+}
+
+#main-navigation a:hover {
+  cursor: pointer;
+  color: yellow;
 }
 
 /*Content*/
@@ -82,7 +83,7 @@ input[type="number"]::-webkit-inner-spin-button {
   height: 100%;
 }
 
-.aside-list ul > li > a {
+.aside-list a {
   text-align: center;
   color: black;
   text-decoration: none;
@@ -94,16 +95,12 @@ input[type="number"]::-webkit-inner-spin-button {
   height: 100%;
 }
 
-/*article*/
+/*Section*/
 
-article {
-  height: 80%;
-  width: 100%;
-}
 
 .registration-guide {
   padding-top: 5%;
-  height: 15%;
+  height: 12%;
   width: 100%;
 }
 
@@ -113,34 +110,32 @@ article {
   font-weight: bolder;
 }
 
-.guide-title > .line {
+.line {
   border-bottom: 1px solid #000;
 }
 
 .sale-registration {
   display: flex;
   height: 80%;
-  width: 100%;;
+  width: 100%;
   background-color: rgb(238, 238, 238);
 }
 
 .product-image-registration {
-  width: 40%;
+  width: 40%
 }
 
-.product-image-registration a > img {
-  display: block;
-  float: left;
-  padding: 15% 0 10% 15%;
-  margin: 0;
+.product-image-registration img {
+  display: flex;
+  margin: 15% 0 10% 18%;
   width: 220px;
-  height: 220px;;
+  height: 220px;
 }
 
 .product-image-registration > input {
   background-color: rgb(228, 228, 228);
   border: 1px solid rgb(207, 207, 207);
-  margin-left: 15%;
+  margin-left: 18%;
   border-radius: 3px;
   width: 212px;
   padding: 3px;
@@ -154,7 +149,7 @@ article {
 .product-explanation > * {
   margin: 0 3% 3% 3%;
   margin-left: 5%;
-  width: 70%;
+  width: 80%;
 }
 
 .product-explanation p {
@@ -165,22 +160,25 @@ article {
 
 .product-explanation > input:nth-last-child(2), input:nth-last-child(3) {
   margin-right: 0;
-  width: 31.6%;
+  width: 36.3%;
 }
 
 .product-explanation p:nth-child(1) {
   margin-top: 10%;
 }
+
 .product-explanation button{
   margin-top: 5%;
-  width: 71%;
+  width: 80%;
 }
 
 /*Footer*/
 
 #main-footer {
+  float: left;
   background: #000;
   color: #fff;
+  margin-top: 60px;
   width: 100%;
   height: 15%;
 }
@@ -194,4 +192,46 @@ article {
   text-decoration: none;
   margin-right: 10px;
   color: #a9acb9;
+}
+
+#main-footer h3:nth-child(1), #main-footer a:nth-child(1) {
+  margin-top: 20px;
+}
+
+@media(max-width: 1200px) {
+  .sale-registration {
+    display: flex;
+    flex-flow: column;
+    height: 80%;
+  }
+  .product-image-registration {
+    width: 100%;
+    height: 25%;
+  }
+  .product-image-registration img {
+    margin: 5% auto;
+  }
+  .product-image-registration input {
+    display: flex;
+    margin: 0 auto;
+    background-color: rgb(228, 228, 228);
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 3px;
+    color: rgb(165, 165, 165);
+  }
+  .product-explanation {
+    width: 100%;
+    height: 40%;
+  }
+  .product-explanation p:nth-child(1) {
+    margin-top: 30%;
+  }
+  .product-explanation > * {
+    margin: 1% 0 0 15%;
+    width: 70%;
+  }
+  .product-explanation > input:nth-last-child(2), input:nth-last-child(3) {
+    margin-right: -10%;
+    width: 31.6%;
+  }
 }
