@@ -15,6 +15,7 @@ li {
 }
 
 html, body {
+  width: 100%;
   height: 100%;
 }
 
@@ -44,15 +45,15 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0 auto;
 }
 
-#main-navigation > ul {
+#main-navigation ul {
   display: flex;
   overflow: hidden;
   text-align: center;
   background: #34343c;
 }
 
-#main-navigation > ul > li {
-  display: inline-block;
+#main-navigation li {
+  display: inline-flex;
   margin: 0;
   padding: 0;
   width: 20%;
@@ -60,23 +61,23 @@ input[type="number"]::-webkit-inner-spin-button {
   font-size: 15px;
 }
 
-#main-navigation > ul > li > a:hover {
-  cursor: pointer;
-  color: yellow;
-}
-
-#main-navigation > ul > li > a {
+#main-navigation a {
   display: block;
   color: white;
   width: 100%;
   height: 100%;
 }
 
+#main-navigation a:hover {
+  cursor: pointer;
+  color: yellow;
+}
+
 /*Content*/
 
 #content {
   width: 100%;
-  height: 75rem;
+  height: 60rem;
 }
 
 #main-aside {
@@ -85,13 +86,13 @@ input[type="number"]::-webkit-inner-spin-button {
   height: 100%;
 }
 
-.aside-list ul > li > a {
+.aside-list a {
   text-align: center;
   color: black;
 }
 
 #main-section {
-  float: left;
+  display: flex;
   width: 60%;
   height: 100%;
 }
@@ -99,18 +100,18 @@ input[type="number"]::-webkit-inner-spin-button {
 /*article*/
 
 article {
-  height: 80%;
+  height: 90%;
   width: 100%;
 }
 
 .registration-guide {
-  padding-top: 5%;
+  padding: 5% 0 2% 0;
   height: 15%;
   width: 100%;
 }
 
 .guide-title > p {
-  display: inline;
+  display: flex;
   font-size: 3em;
   font-weight: bolder;
 }
@@ -131,8 +132,7 @@ article {
 }
 
 .product-image-registration img {
-  display: block;
-  float: left;
+  display: flex;
   padding: 15% 0 10% 15%;
   margin: 0;
   width: 220px;
@@ -156,7 +156,7 @@ article {
 .product-explanation > * {
   margin: 0 3% 3% 3%;
   margin-left: 5%;
-  width: 70%;
+  width: 80%;
 }
 
 .product-explanation p {
@@ -172,11 +172,14 @@ article {
 .product-explanation button{
   margin-top: 5%;
 }
+
 /*Footer*/
 
 #main-footer {
+  float: left;
   background: #000;
   color: #fff;
+  margin-top: 70px;
   width: 100%;
   height: 15%;
 }
@@ -190,4 +193,52 @@ article {
   text-decoration: none;
   margin-right: 10px;
   color: #a9acb9;
+}
+
+#main-footer h3:nth-child(1), #main-footer a:nth-child(1) {
+  margin-top: 20px;
+}
+
+@media(max-width: 1200px) {
+  article {
+    height: 100%;
+  }
+  .sale-registration {
+    display: flex;
+    flex-flow: column;
+    height: 85%;
+  }
+  .product-image-registration {
+    float: left;
+    width: 100%;
+    height: 25%;
+  }
+  .product-image-registration img {
+    padding: 7% 0 7% 0;
+    margin: 0 auto;
+  }
+  .product-image-registration input {
+    display: flex;
+    margin: 0 auto;
+    background-color: rgb(228, 228, 228);
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 3px;
+    color: rgb(165, 165, 165);
+  }
+  .product-explanation {
+    float: left;
+    width: 100%;
+    height: 40%;
+  }
+  .product-explanation p:nth-child(1) {
+    margin-top: 200px;
+  }
+  .product-explanation > * {
+    margin: 1% 0 0 15%;
+    width: 70%;
+  }
+  .product-explanation > input:nth-last-child(2), input:nth-last-child(3) {
+    margin-right: -10%;
+    width: 68%;
+  }
 }
