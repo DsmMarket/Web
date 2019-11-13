@@ -59,7 +59,7 @@ function fillItemCarousel(type, data) {
     }
 }
 
-function getDealList() {
+(function getDealList() {
     axios.get(`https://dsm-market.ga/list/deal`, {
         params: {
             "page": 1,
@@ -90,7 +90,7 @@ function getDealList() {
         }
 
     })
-}
+})()
 function getRentList() {
     axios.get(`https://dsm-market.ga/list/rent`, {
         params: {
