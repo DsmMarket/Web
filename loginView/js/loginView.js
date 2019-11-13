@@ -30,7 +30,7 @@ function loginButton_pressed() {
         alert("비밀번호를 입력해주세요.");
 
     } else {
-        axios.post(`http://52.78.148.203/auth/login`, {
+        axios.post(`https://dsm-market.ga/auth/login`, {
             "email": login_id.value,
             "password": login_password.value
         })
@@ -84,7 +84,7 @@ function signupButton_pressed() {
         alert("학년을 선택하지 않으셨습니다.");
 
     } else {
-        axios.post(`http://52.78.148.203/account/join`, {
+        axios.post(`https://dsm-market.ga/account/join`, {
             email: signup_id.value,
             password: signup_password.value,
             nick: signup_nickName.value,
@@ -94,7 +94,7 @@ function signupButton_pressed() {
         .then((response) => {
             if(response.status === 200) {
                 alert('join success');
-
+                loginView_center_logSignChanging()
             } else if(response.status === 403) {
                 alert('existent email or existent nick');
 
@@ -123,17 +123,16 @@ function findPassButton_pressed() {
         alert("올바른 이메일 형식이 아닙니다.");
 
     } else if(findPass_email.value !== "" && findPass_confirm.value === "" && findPassEmailAfterCheck) {
-        loginView_center.classList.toggle('findPassEmailAfter');
-        findPassEmailAfterCheck = false;
-        axios.post(`/mail/send`, {
+        // findPassEmailAfterCheck = false;
+        axios.post(`https://dsm-market.ga/auth/mail`, {
             email: findPass_email.value,
         })
         .then((response) => {
             if(response.status === 200) {
-                alert('send success');
-
+                console.log('send success');
+                loginView_center.classList.toggle('findPassEmailAfter');
             } else {
-                alert(`Error: status code[${response.status}]`);
+                console.log(`Error: status code[${response.status}]`);
 
             }
         })
@@ -142,7 +141,7 @@ function findPassButton_pressed() {
 
         })
 
-    } else if(findPass_confirm.value === "") {
+    } /*else if(findPass_confirm.value === "") {
         alert("인증번호를 적어주세요.");
 
     } else {
@@ -168,7 +167,7 @@ function findPassButton_pressed() {
 
         })
 
-    }
+    }*/
     
 }
 
