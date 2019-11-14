@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta content="text/html"; charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>DSM market - 판매 등록</title>
+  </head>
+  <body>
+
+    <header id="main-header">
+
+    </header>
+
+    <nav id="main-navigation">
+      <ul>
+        <li><a href="#">상품 구매</a></li>
+        <li><a href="#">상품 대여</a></li>
+        <li><a href="#">판매 등록</a></li>
+        <li><a href="#">대여 등록 </a></li>
+        <li><a href="#">마이페이지</a></li>
+      </ul>
+    </nav>
+
+    <div id="content">
+      <aside id="main-aside">
+        <div class="aside-list">
+
+        </div>
+      </aside>
+
+      <section id="main-section">
+        <article>
+          <div class="registration-guide">
+            <div class="guide-title">
+              <p>판매 상품 등록</p>
+              <div class="line"></div>
+            </div>
+          </div>
+
+          <div class="sale-registration">
+            <div class="product-image-registration">
+              <a href="#">
+                <img src="image/hoseung5.png" alt="Unknown Image">
+              </a>
+              <input class="image-upload" type="file" name="userImage" multiple>
+            </div>
+
+            <form class="product-explanation">
+              <p>상단에 표시될 제목</p>
+              <input type="text" name="name" placeholder="제목을 입력하세요."> <br />
+              <p>제품 이름</p>
+              <input type="text" name="name" placeholder="제품명을 입력하세요."> <br />
+              <p>제품 설명</p>
+              <textarea name="Introduce" placeholder="제품에 대한 설명을 기입하세요."></textarea> <br />
+              <p>등록할 카테고리</p>
+              <select name="category" onchange={this.onchange.bind(this)}>
+                <option selected disabled hidden>카테고리</option>
+                <option value="daily-necessity">생필품</option>
+                <option value="fitness-equipment">운동기구</option>
+                <option value="electronic-products">전자제품</option>
+              </select> <br />
+              <p>제품 가격</p>
+              <input type="number" name="price" placeholder="가격을 입력하세요."> <br />
+              <button type="submit">등록하기</button>
+            </form>
+
+          </div>
+
+        </article>
+      </section>
+    </div>
+
+    <footer id="main-footer">
+      <h3>DSM market</h3><a href="#">About</a><a href="#">Blog</a><a href="#">Support</a>  <br />
+      <h3>Social</h3><a href="#">Facebook</a><a href="#">Twitter</a>  <br />
+      <h3>Community</h3><a href="#">Teams</a><a href="#">Club</a>  <br />
+    </footer>
+
+  </body>
+</html>
