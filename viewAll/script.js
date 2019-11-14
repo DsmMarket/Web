@@ -1,14 +1,9 @@
-
-<<<<<<< HEAD
 const mainPageItemCarouselShop = document.getElementById('view-item');
-=======
-const mainPageItemCarouselShop = document.getElementById('asdf');
->>>>>>> ca357dc698ed29cb6b7176c8d4bf22e4a52440c8
+const mainPageItemCarouselShop = document.getElementById('view-item');
 // const mainPageItemCarouselRent = document.getElementById('mainPageItemCarouselRent');
 function fillItemCarousel(type, data) {
     if(type == 'deal') {
         data.forEach((v) => {
-<<<<<<< HEAD
 
             // <div class="paper">
             //     <div class="paper-holder">
@@ -26,16 +21,13 @@ function fillItemCarousel(type, data) {
 
             let mainPage_itemCarousel_content = document.createElement('div');
             mainPage_itemCarousel_content.setAttribute('class', 'paper');
-=======
             let mainPage_itemCarousel_content = document.createElement('div');
             mainPage_itemCarousel_content.setAttribute('class', 'mainPage_itemCarousel_content');
->>>>>>> ca357dc698ed29cb6b7176c8d4bf22e4a52440c8
             mainPage_itemCarousel_content.addEventListener('click', () => {
                 itemClicked(v.postId, 0);
                 popup_showItem.classList.remove("hidden");
             })
             mainPage_itemCarousel_content.innerHTML += `
-<<<<<<< HEAD
             <div class="paper-holder">
                 <a href="#">
                     <img src="${v.img}" alt="Unknown Image" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';">
@@ -46,13 +38,11 @@ function fillItemCarousel(type, data) {
             <div class="paper-content">
                 <p class="paper-text"></p>
             </div>
-=======
                 <div class="mainPage_itemCarousel_content_image"><img src="${v.img}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';"></div>
                 <div class="mainPage_itemCarousel_content_namePrice">
                     <h6 class="mainPage_itemCarousel_content_name">${v.title}</h6>
                     <p class="mainPage_itemCarousel_content_price">${v.price}</p>
                 </div>
->>>>>>> ca357dc698ed29cb6b7176c8d4bf22e4a52440c8
             `
             mainPageItemCarouselShop.appendChild(mainPage_itemCarousel_content);
             // mainPageItemCarouselShop.innerHTML += `
@@ -100,13 +90,10 @@ function fillItemCarousel(type, data) {
     axios.get(`https://dsm-market.ga/list/deal`, {
         params: {
             "page": 1,
-<<<<<<< HEAD
-            "pagesize": 5
-=======
+            "pagesize": 5,
             "pagesize": 4,
             "search": "",
             "category": "",
->>>>>>> ca357dc698ed29cb6b7176c8d4bf22e4a52440c8
         },
         headers: {
             "Authorization": localStorage.getItem("accessToken"),
