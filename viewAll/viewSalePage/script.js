@@ -1,5 +1,4 @@
-const mainPageItemCarouselShop = document.getElementById('view-item');
-const mainPageItemCarouselShop = document.getElementById('view-item');
+const mainPageItemCarouselShop = document.getElementById('paper-collage');
 // const mainPageItemCarouselRent = document.getElementById('mainPageItemCarouselRent');
 function fillItemCarousel(type, data) {
     if(type == 'deal') {
@@ -21,8 +20,6 @@ function fillItemCarousel(type, data) {
 
             let mainPage_itemCarousel_content = document.createElement('div');
             mainPage_itemCarousel_content.setAttribute('class', 'paper');
-            let mainPage_itemCarousel_content = document.createElement('div');
-            mainPage_itemCarousel_content.setAttribute('class', 'mainPage_itemCarousel_content');
             mainPage_itemCarousel_content.addEventListener('click', () => {
                 itemClicked(v.postId, 0);
                 popup_showItem.classList.remove("hidden");
@@ -38,11 +35,6 @@ function fillItemCarousel(type, data) {
             <div class="paper-content">
                 <p class="paper-text"></p>
             </div>
-                <div class="mainPage_itemCarousel_content_image"><img src="${v.img}" onError="this.src='https://cdn-images-1.medium.com/max/1200/1*6kEev2FT9fMgGqWhNJSfPg.jpeg';"></div>
-                <div class="mainPage_itemCarousel_content_namePrice">
-                    <h6 class="mainPage_itemCarousel_content_name">${v.title}</h6>
-                    <p class="mainPage_itemCarousel_content_price">${v.price}</p>
-                </div>
             `
             mainPageItemCarouselShop.appendChild(mainPage_itemCarousel_content);
             // mainPageItemCarouselShop.innerHTML += `
@@ -89,9 +81,8 @@ function fillItemCarousel(type, data) {
 (function getDealList() {
     axios.get(`https://dsm-market.ga/list/deal`, {
         params: {
-            "page": 1,
-            "pagesize": 5,
-            "pagesize": 4,
+            "page": 0,
+            "pagesize": 10,
             "search": "",
             "category": "",
         },
@@ -102,6 +93,7 @@ function fillItemCarousel(type, data) {
     .then((response) => {
         if(response.status === 200) {
             console.log('9. refer success(Deal)');
+            console.log(response.data.list);
             fillItemCarousel('deal', response.data.list);
         } else if(response.status === 401) {
             console.log('3. invalid access token(Deal)');
