@@ -37,7 +37,7 @@
 
         <div class="registration-guide">
           <div class="guide-title">
-            <p>대여 상품 등록</p>
+            <p>상품 대여 등록</p>
             <div class="line"></div>
           </div>
         </div>
@@ -51,22 +51,22 @@
 
           <form class="product-explanation">
             <p>상단에 표시될 제목</p>
-            <input type="text" name="name" placeholder="제목을 입력하세요."> <br />
+            <input type="text" name="name" placeholder="제목을 입력하세요." requied> <br />
             <p>제품 이름</p>
-            <input type="text" name="name" placeholder="제품명을 입력하세요."> <br />
+            <input type="text" name="name" placeholder="제품명을 입력하세요." requied> <br />
             <p>제품 설명</p>
-            <textarea name="Introduce" placeholder="제품에 대한 설명을 기입하세요."></textarea> <br />
+            <textarea name="Introduce" placeholder="제품에 대한 설명을 기입하세요." requied></textarea> <br />
             <p>등록할 카테고리</p>
-            <select name="category" onchange={this.onchange.bind(this)}>
+            <select name="category" onchange={this.onchange.bind(this)} requied>
               <option selected disabled hidden>카테고리</option>
               <option value="daily-necessity">생필품</option>
               <option value="fitness-equipment">운동기구</option>
               <option value="electronic-products">전자제품</option>
             </select> <br />
             <p>제품 가격</p>
-            <input type="number" name="price" placeholder="가격을 입력하세요."> <br />
+            <input type="number" name="price" placeholder="가격을 입력하세요." min="0" requied> <br />
             <p>대여 가능한 날짜와 시간</p>
-            <input type="date"> <input type="time">
+            <input type="date" requied> <input type="time" requied>
             <button type="submit">등록하기</button>
           </form>
 
