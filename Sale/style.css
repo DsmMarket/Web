@@ -77,7 +77,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 #content {
   width: 100%;
-  height: 60rem;
+  height: 65rem;
 }
 
 #main-aside {
@@ -105,8 +105,10 @@ article {
 }
 
 .registration-guide {
-  padding: 5% 0 2% 0;
-  height: 15%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5%;
+  height: 14%;
   width: 100%;
 }
 
@@ -122,19 +124,20 @@ article {
 
 .sale-registration {
   display: flex;
-  height: 80%;
-  width: 100%;;
+  height: 90%;
+  width: 100%;
   background-color: rgb(238, 238, 238);
 }
 
 .product-image-registration {
+  display: flex;
+  flex-direction: column;
   width: 40%;
 }
 
 .product-image-registration img {
   display: flex;
-  padding: 15% 0 10% 15%;
-  margin: 0;
+  margin: 15% 0 10% 15%;
   width: 220px;
   height: 220px;;
 }
@@ -150,6 +153,8 @@ article {
 }
 
 .product-explanation {
+  display: flex;
+  flex-direction: column;
   width: 60%;
 }
 
@@ -200,22 +205,21 @@ article {
 }
 
 @media(max-width: 1200px) {
-  article {
-    height: 100%;
-  }
   .sale-registration {
     display: flex;
     flex-flow: column;
-    height: 85%;
+    height: 90%;
   }
   .product-image-registration {
-    float: left;
     width: 100%;
-    height: 25%;
+    height: 36%;
   }
   .product-image-registration img {
-    padding: 7% 0 7% 0;
-    margin: 0 auto;
+    display: flex;
+    margin: 3% auto;
+    padding: 0;
+    width: 220px;
+    height: 220px;;
   }
   .product-image-registration input {
     display: flex;
@@ -226,19 +230,26 @@ article {
     color: rgb(165, 165, 165);
   }
   .product-explanation {
-    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     width: 100%;
-    height: 40%;
+    height: 60%;
   }
   .product-explanation p:nth-child(1) {
-    margin-top: 200px;
+    margin-top: 0%;
   }
   .product-explanation > * {
-    margin: 1% 0 0 15%;
+    margin: 0 0 0 15%;
     width: 70%;
   }
-  .product-explanation > input:nth-last-child(2), input:nth-last-child(3) {
-    margin-right: -10%;
-    width: 68%;
+  .product-explanation p {
+    display: inline-block;
+    color: grey;
+    font-size: 11px;
+  }
+  .product-explanation button {
+    margin: 5% 0 5% 15%;
+    width: 70%;
   }
 }
